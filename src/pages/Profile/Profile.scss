@@ -1,0 +1,260 @@
+.profile-page {
+  background-color: #FFFFFF;
+  min-height: 100vh;
+}
+
+.profile-header {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 50px 140px 0 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-logo {
+  width: 220px;
+  height: 35px;
+}
+
+.user-block {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.user-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.user-name {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #000000;
+}
+
+.arrow-icon {
+  width: 8.03px;
+  height: 8.03px;
+  cursor: pointer;
+}
+
+.profile-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 140px;
+}
+
+.profile-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 60px 0 60px 0;
+  width: 810px;
+  height: 44px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 1160px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  padding: 30px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 60px;
+}
+
+.profile-inner {
+  display: flex;
+  gap: 33px;
+  align-items: flex-start;
+  width: fit-content;
+}
+
+.profile-avatar {
+  width: 197px;
+  height: 197px;
+  object-fit: cover;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.profile-name {
+  width: 300px;
+  height: 35px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0;
+}
+
+.profile-login {
+  width: 188px;
+  height: 20px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0;
+}
+
+.profile-logout {
+  width: 192px;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid #000000;
+  border-radius: 46px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: 44px;
+}
+
+/* Мои курсы */
+.profile-courses {
+  margin-top: 60px;
+}
+
+.courses-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 110%;
+  color: #000000;
+  margin-bottom: 40px;
+}
+
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1160px;
+}
+
+.course-card {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.course-image {
+  width: 100%;
+  height: 325px;
+  object-fit: cover;
+}
+
+.course-content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  flex: 1;
+}
+
+.course-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 110%;
+  margin: 0;
+}
+
+.course-stats {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #F7F7F7;
+  padding: 8px 12px;
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+}
+
+.stat img {
+  width: 20px;
+  height: 20px;
+}
+
+.course-progress {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.progress-bar {
+  width: 300px;
+  height: 6px;
+  background-color: #F3F4F6;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: #00C1FF;
+  border-radius: 50px;
+}
+
+.progress-text {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  color: #4B5563;
+}
+
+.course-btn {
+  background-color: #BCEC30;
+  border: none;
+  border-radius: 46px;
+  padding: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: auto;
+  transition: background 0.2s;
+}
+
+.course-btn:hover {
+  background-color: #a8d428;
+}
+
+.course-card {
+  position: relative;   
+}
+
+.course-delete {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 2;
+}

@@ -1,6 +1,24 @@
 import './CoursePage.module.scss'
+import { useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { getCourseById, type Course } from '@/api/courses'
 
 const CoursePage = () => {
+  const { id } = useParams<{ id: string }>()
+  const [course, setCourse] = useState<Course | null>(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (!id) return
+    getCourseById(id)
+      .then(setCourse)
+      .catch(console.error)
+      .finally(() => setLoading(false))
+  }, [id])
+
+  if (loading) return <div style={{ paddingTop: '180px' }}>Загрузка...</div>
+  if (!course) return <div style={{ paddingTop: '180px' }}>Курс не найден</div>
+
     return (
         <div style={{ backgroundColor: '#FAFAFA', minHeight: '1703px' }}>
             <div style={{

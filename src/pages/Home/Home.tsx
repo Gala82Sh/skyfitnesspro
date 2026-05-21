@@ -1,8 +1,24 @@
 import { useState } from 'react'
 import ModalAuth from '@/components/ModalAuth/ModalAuth'
+import { useAuth } from '@/hooks/useAuth'
+import { addCourseToUser } from '@/api/userCourses'
 
 const Home = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+const { isAuth } = useAuth()
+
+const handleAddCourse = async (courseId: string) => {
+  if (!isAuth) {
+    setIsAuthModalOpen(true)
+    return
+  }
+  try {
+    await addCourseToUser(courseId)
+    alert('Курс добавлен!')
+  } catch (err: any) {
+    alert(err.message)
+  }
+}
 
   return (
     <div style={{ backgroundColor: '#FAFAFA', minHeight: '1559px' }}>
@@ -154,6 +170,7 @@ const Home = () => {
               cursor: 'pointer',
               zIndex: 2
             }}
+            onClick={() => handleAddCourse('ab1c3f')}
           />
           <img src="/image/yoga.svg" alt="Yoga" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
@@ -202,6 +219,7 @@ const Home = () => {
               cursor: 'pointer',
               zIndex: 2
             }}
+             onClick={() => handleAddCourse('kfpq8e')}
           />
           <img src="/image/stretching.svg" alt="Stretching" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
@@ -250,6 +268,7 @@ const Home = () => {
               cursor: 'pointer',
               zIndex: 2
             }}
+             onClick={() => handleAddCourse('kfpq8e')}
           />
           <img src="/image/fitness.svg" alt="Fitness" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
@@ -298,6 +317,7 @@ const Home = () => {
               cursor: 'pointer',
               zIndex: 2
             }}
+             onClick={() => handleAddCourse('kfpq8e')}
           />
           <img src="/image/step_aerobics.svg" alt="Step aerobics" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
@@ -346,6 +366,7 @@ const Home = () => {
               cursor: 'pointer',
               zIndex: 2
             }}
+             onClick={() => handleAddCourse('kfpq8e')}
           />
           <img src="/image/bodyflex.svg" alt="Bodyflex" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
@@ -399,6 +420,7 @@ const Home = () => {
 
       {/* Модальное окно авторизации */}
       <ModalAuth isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+
     </div>
   )
 }
