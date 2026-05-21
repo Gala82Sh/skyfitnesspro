@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
+
 interface ModalAuthProps {
   isOpen: boolean
   onClose: () => void
@@ -11,25 +13,71 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
   if (!isOpen) return null
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
 
     if (!isLogin) {
+      const specialCharCount = (password.match(/[^A-Za-z0-9]/g) || []).length
+      if (password.length < 6) {
+        setError('Пароль должен содержать не менее 6 символов')
+        return
+      }
+      if (specialCharCount < 2) {
+        setError('Пароль должен содержать не менее 2 спецсимволов')
+        return
+      }
+      if (!/[A-Z]/.test(password)) {
+        setError('Пароль должен содержать как минимум одну заглавную букву')
+        return
+      }
       if (password !== confirmPassword) {
         setError('Пароли не совпадают')
         return
       }
-      if (password.length < 6) {
-        setError('Пароль должен быть не менее 6 символов')
-        return
+
+      try {
+        const res = await fetch(`${API_BASE_URL}/auth/register`, {
+          method: 'POST',
+          body: JSON.stringify({ email, password }),
+        })
+        const data = await res.json()
+        if (res.ok) {
+          alert('Регистрация прошла успешно! Теперь войдите')
+          setIsLogin(true)
+          setEmail('')
+          setPassword('')
+          setConfirmPassword('')
+        } else {
+          setError(data.message || 'Ошибка регистрации')
+        }
+      } catch {
+        setError('Ошибка соединения с сервером')
       }
+      return
     }
 
-    console.log({ isLogin, email, password })
+    try {
+      const res = await fetch(`${API_BASE_URL}/auth/login`, {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+      })
+      const data = await res.json()
+      if (res.ok) {
+        localStorage.setItem('token', data.token)
+        onClose()
+        window.location.reload()
+      } else {
+        setError(data.message || 'Ошибка входа')
+      }
+    } catch {
+      setError('Ошибка соединения с сервером')
+    }
   }
 
   return (
@@ -44,7 +92,7 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        zIndex: 1000
+        zIndex: 1000,
       }}
       onClick={onClose}
     >
@@ -56,7 +104,7 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
           padding: '40px',
           display: 'flex',
           flexDirection: 'column',
-          gap: '48px'
+          gap: '48px',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -65,10 +113,9 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
-          {/* Поле Логин / Эл. почта */}
           <input
-            type={isLogin ? "text" : "email"}
-            placeholder={isLogin ? "Логин" : "Эл. почта"}
+            type={isLogin ? 'text' : 'email'}
+            placeholder={isLogin ? 'Логин' : 'Эл. почта'}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             style={{
@@ -80,42 +127,19 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
               fontFamily: 'Roboto, sans-serif',
               fontSize: '16px',
               boxSizing: 'border-box',
-              marginBottom: '10px',   
+              marginBottom: '10px',
               color: '#000',
-              backgroundColor: '#fff'
-            }}
-            required
-          />
-          
-          {/* Поле Пароль */}
-          <input
-            type="password"
-            placeholder="Пароль"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            style={{
-              width: '100%',
-              height: '52px',
-              padding: '16px 18px',
-              border: '1px solid #D0CECE',
-              borderRadius: '8px',
-              fontFamily: 'Roboto, sans-serif',
-              fontSize: '16px',
-              boxSizing: 'border-box',
-              marginBottom: isLogin ? '34px' : '10px',   
-              color: '#000',
-              backgroundColor: '#fff'
+              backgroundColor: '#fff',
             }}
             required
           />
 
-          {/* Поле подтверждения пароля (для регистрации) */}
-          {!isLogin && (
+          <div style={{ position: 'relative', width: '100%' }}>
             <input
-              type="password"
-              placeholder="Повторите пароль"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
+              type={showPassword ? 'text' : 'password'}
+              placeholder="Пароль"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               style={{
                 width: '100%',
                 height: '52px',
@@ -125,16 +149,71 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
                 fontFamily: 'Roboto, sans-serif',
                 fontSize: '16px',
                 boxSizing: 'border-box',
-                marginBottom: '34px',   
-                backgroundColor: '#fff'
+                marginBottom: isLogin ? '34px' : '10px',
+                color: '#000',
+                backgroundColor: '#fff',
+                paddingRight: '45px',
               }}
               required
             />
+            <span
+              onClick={() => setShowPassword(!showPassword)}
+              style={{
+                position: 'absolute',
+                right: '15px',
+                top: '16px',
+                cursor: 'pointer',
+                userSelect: 'none',
+                fontSize: '20px',
+                color: '#D0CECE',
+              }}
+            >
+              {showPassword ? '👁' : '👁‍🗨'}
+            </span>
+          </div>
+
+          {!isLogin && (
+            <div style={{ position: 'relative', width: '100%' }}>
+              <input
+                type={showConfirmPassword ? 'text' : 'password'}
+                placeholder="Повторите пароль"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                style={{
+                  width: '100%',
+                  height: '52px',
+                  padding: '16px 18px',
+                  border: '1px solid #D0CECE',
+                  borderRadius: '8px',
+                  fontFamily: 'Roboto, sans-serif',
+                  fontSize: '16px',
+                  boxSizing: 'border-box',
+                  marginBottom: '34px',
+                  color: '#000',
+                  backgroundColor: '#fff',
+                  paddingRight: '45px',
+                }}
+                required
+              />
+              <span
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                style={{
+                  position: 'absolute',
+                  right: '15px',
+                  top: '16px',
+                  cursor: 'pointer',
+                  userSelect: 'none',
+                  fontSize: '20px',
+                  color: '#D0CECE',
+                }}
+              >
+                {showConfirmPassword ? '👁' : '👁‍🗨'}
+              </span>
+            </div>
           )}
 
           {error && <div style={{ color: 'red', fontSize: '14px', marginBottom: '10px' }}>{error}</div>}
 
-          {/* Кнопка "Войти" / "Зарегистрироваться" */}
           <button
             type="submit"
             style={{
@@ -149,19 +228,20 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
               fontSize: '16px',
               fontWeight: '500',
               color: '#000',
-              marginBottom: '10px'
+              marginBottom: '10px',
             }}
           >
             {isLogin ? 'Войти' : 'Зарегистрироваться'}
           </button>
 
-          {/* Кнопка переключения формы */}
           <button
             type="button"
             onClick={() => {
               setIsLogin(!isLogin)
               setError('')
               setConfirmPassword('')
+              setShowPassword(false)
+              setShowConfirmPassword(false)
             }}
             style={{
               width: '100%',
@@ -174,7 +254,7 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
               fontFamily: 'Roboto, sans-serif',
               fontSize: '16px',
               fontWeight: '500',
-              color: '#000'
+              color: '#000',
             }}
           >
             {isLogin ? 'Зарегистрироваться' : 'Войти'}

@@ -1,22 +1,30 @@
 import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 import './Profile.scss'
+import UserMenu from '@/components/UserMenu/UserMenu'
+import { getUserMe } from '@/api/user'
 
 const Profile = () => {
     const navigate = useNavigate()
-    const userName = 'Сергей'
-    const userLogin = 'sergey.petrov96'
+    const [user, setUser] = useState({ name: '', email: '' })
+
+  useEffect(() => {
+  getUserMe()
+    .then(data => {
+      const user = data.user || data
+      if (user?.email) {
+        const nameFromEmail = user.email.split('@')[0]
+        setUser({ name: nameFromEmail, email: user.email })
+      } else {
+        setUser({ name: 'Пользователь', email: '' })
+      }
+    })
+    .catch(console.error)
+}, [])
 
     const handleDeleteCourse = (courseId: string) => {
-        // заглушка
         alert(`Удалить курс ${courseId}`)
     }
-
-    // Заглушка курсов пользователя
-    const userCourses = [
-        { id: 'ab1c3f', title: 'Йога', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 40, img: '/image/yoga.svg' },
-        { id: 'kfpq8e', title: 'Стретчинг', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 0, img: '/image/stretching.svg' },
-        { id: 'ypox9r', title: 'Фитнес', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 100, img: '/image/fitness.svg' }
-    ]
 
     const handleLogout = () => {
         localStorage.removeItem('token')
@@ -31,9 +39,15 @@ const Profile = () => {
         }
     }
 
+    // ВРЕМЕННАЯ ЗАГЛУШКА ( заменить на реальные курсы из API)
+    const userCourses = [
+        { id: 'ab1c3f', title: 'Йога', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 40, img: '/image/yoga.svg' },
+        { id: 'kfpq8e', title: 'Стретчинг', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 0, img: '/image/stretching.svg' },
+        { id: 'ypox9r', title: 'Фитнес', days: 25, duration: '20-50 мин/день', level: 'Сложность', progress: 100, img: '/image/fitness.svg' }
+    ]
+
     return (
         <div className="profile-page">
-            {/* Логотип и блок пользователя */}
             <div className="profile-header">
                 <img
                     src="/image/logo.svg"
@@ -42,28 +56,22 @@ const Profile = () => {
                     onClick={() => navigate('/')}
                     style={{ cursor: 'pointer' }}
                 />
-                <div className="user-block">
-                    <img src="/image/profile.svg" alt="profile" className="user-icon" />
-                    <span className="user-name">{userName}</span>
-                    <img src="/image/arrow.svg" alt="arrow" className="arrow-icon" />
-                </div>
+                <UserMenu />
             </div>
 
-            {/* Контейнер с информацией */}
             <div className="profile-container">
                 <h1 className="profile-title">Профиль</h1>
                 <div className="profile-card">
                     <div className="profile-inner">
                         <img src="/image/mask.svg" alt="avatar" className="profile-avatar" />
                         <div className="profile-details">
-                            <div className="profile-name">{userName}</div>
-                            <div className="profile-login">Логин: {userLogin}</div>
+                            <div className="profile-name">{user.name}</div>
+                            <div className="profile-login">Логин: {user.email}</div>
                             <button className="profile-logout" onClick={handleLogout}>Выйти</button>
                         </div>
                     </div>
                 </div>
 
-                {/* Мои курсы */}
                 <div className="profile-courses">
                     <h2 className="courses-title">Мои курсы</h2>
                     <div className="courses-grid">
