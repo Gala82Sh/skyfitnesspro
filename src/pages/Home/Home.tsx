@@ -129,6 +129,7 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
@@ -161,6 +162,7 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
@@ -193,6 +195,7 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
@@ -225,6 +228,7 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
@@ -257,6 +261,7 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'

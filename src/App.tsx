@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Header from './components/Header/Header'
 import Footer from './components/Footer/Footer'
 import Home from './pages/Home/Home'
+import CoursePage from './pages/CoursePage/CoursePage'
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app">
-        <Header />
         <main className="app__main">
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/course/:id" element={<CoursePage />} />
           </Routes>
         </main>
         <Footer />
