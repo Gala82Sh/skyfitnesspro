@@ -1,0 +1,83 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-auth {
+  width: 360px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+
+  &__logo {
+    width: 220px;
+    height: 35px;
+    margin-top: 0;
+    align-self: flex-start;
+  }
+
+  &__form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 34px;
+
+    input {
+      width: 100%;
+      height: 52px;
+      padding: 16px 18px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 16px;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: #BCEC30;
+      }
+    }
+  }
+
+  &__error {
+    color: red;
+    font-size: 14px;
+    margin-top: -20px;
+  }
+
+  &__btn {
+    width: 100%;
+    height: 52px;
+    border-radius: 46px;
+    padding: 16px 26px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+
+    &--primary {
+      background-color: #BCEC30;
+      color: #000;
+    }
+
+    &--secondary {
+      background-color: transparent;
+      border: 1px solid #BCEC30;
+      color: #000;
+    }
+  }
+}

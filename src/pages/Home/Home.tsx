@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import ModalAuth from '@/components/ModalAuth/ModalAuth'
+
 const Home = () => {
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+
   return (
     <div style={{ backgroundColor: '#FAFAFA', minHeight: '1559px' }}>
       {/* Центрированный контейнер */}
@@ -101,6 +106,7 @@ const Home = () => {
 
         {/* Кнопка Вход */}
         <button
+          onClick={() => setIsAuthModalOpen(true)}
           style={{
             position: 'absolute',
             top: '50px',
@@ -119,9 +125,9 @@ const Home = () => {
           Войти
         </button>
 
-        {/*  КАРТОЧКИ КУРСОВ  */}
+        {/* КАРТОЧКИ КУРСОВ */}
 
-        {/*  Йога */}
+        {/* Йога */}
         <div style={{
           position: 'absolute',
           top: '350px',
@@ -187,7 +193,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/*  Фитнес */}
+        {/* Фитнес */}
         <div style={{
           position: 'absolute',
           top: '350px',
@@ -220,7 +226,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/*  Степ-аэробика */}
+        {/* Степ-аэробика */}
         <div style={{
           position: 'absolute',
           top: '891px',
@@ -253,7 +259,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/*  Бодифлекс */}
+        {/* Бодифлекс */}
         <div style={{
           position: 'absolute',
           top: '891px',
@@ -314,7 +320,10 @@ const Home = () => {
           />
         </button>
 
-      </div> {}
+      </div>
+
+      {/* Модальное окно авторизации */}
+      <ModalAuth isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </div>
   )
 }
