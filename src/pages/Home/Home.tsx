@@ -135,11 +135,26 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
         }}>
+
+          {/* Иконка + */}
+          <img
+            src="/image/plus.svg"
+            alt="Добавить курс"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              zIndex: 2
+            }}
+          />
           <img src="/image/yoga.svg" alt="Yoga" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
             <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>Йога</div>
@@ -168,11 +183,26 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
         }}>
+
+          {/* Иконка + */}
+          <img
+            src="/image/plus.svg"
+            alt="Добавить курс"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              zIndex: 2
+            }}
+          />
           <img src="/image/stretching.svg" alt="Stretching" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
             <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>Стретчинг</div>
@@ -201,11 +231,26 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
         }}>
+
+          {/* Иконка + */}
+          <img
+            src="/image/plus.svg"
+            alt="Добавить курс"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              zIndex: 2
+            }}
+          />
           <img src="/image/fitness.svg" alt="Fitness" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
             <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>Фитнес</div>
@@ -234,11 +279,26 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
         }}>
+
+          {/* Иконка + */}
+          <img
+            src="/image/plus.svg"
+            alt="Добавить курс"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              zIndex: 2
+            }}
+          />
           <img src="/image/step_aerobics.svg" alt="Step aerobics" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
             <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>Степ-аэробика</div>
@@ -267,11 +327,26 @@ const Home = () => {
           width: '360px',
           height: '501px',
           backgroundColor: '#FFFFFF',
-          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',   
+          boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           borderRadius: '30px',
           overflow: 'hidden',
           paddingBottom: '15px'
         }}>
+
+          {/* Иконка + */}
+          <img
+            src="/image/plus.svg"
+            alt="Добавить курс"
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              width: '32px',
+              height: '32px',
+              cursor: 'pointer',
+              zIndex: 2
+            }}
+          />
           <img src="/image/bodyflex.svg" alt="Bodyflex" style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} />
           <div style={{ padding: '20px', boxSizing: 'border-box' }}>
             <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>Бодифлекс</div>
