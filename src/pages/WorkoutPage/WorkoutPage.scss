@@ -1,0 +1,174 @@
+.workout-page {
+  background-color: #FAFAFA;
+  min-height: 100vh;
+}
+
+.workout-header {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 140px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 50px; 
+}
+
+.workout-logo {
+ width: 220px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.workout-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 140px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 260px;
+}
+
+.workout-header .user-menu-wrapper {
+  margin-top: -4px;
+}
+
+.workout-title {
+  width: 810px;
+  height: 60px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 100%;
+  letter-spacing: 0px;
+  color: #000000;
+  margin: 0;
+  margin-top: 60px;
+}
+
+.workout-video {
+  width: 1160px;
+  height: 639px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+
+  iframe {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.exercises-block {
+  width: 1160px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.exercises-title {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  margin: 0;
+  color: #000;
+}
+
+.exercises-grid {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.exercises-column {
+  width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.exercise-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.exercise-name {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  color: #000000;
+}
+
+.exercise-progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-bar-small {
+  flex: 1;
+  width: 100%;
+  height: 6px;
+  background-color: #F3F4F6;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.progress-fill-small {
+  height: 100%;
+  background-color: #BCEC30;
+  border-radius: 50px;
+}
+
+.exercise-percent {
+  width: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  color: #000000;
+  text-align: right;
+}
+
+.save-progress-btn {
+  width: 320px;
+  height: 52px;
+  padding: 16px 26px;
+  background-color: #BCEC30;
+  border: none;
+  border-radius: 46px;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000000;
+  margin-top: 10px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #a8d428;
+  }
+}
+
+.no-exercises-message {
+  text-align: center;
+  padding: 60px 20px;
+  background-color: #F9F9F9;
+  border-radius: 20px;
+  margin: 20px 0;
+  
+  p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    color: #6B7280;
+    margin: 0;
+  }
+}

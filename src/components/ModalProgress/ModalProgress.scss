@@ -1,0 +1,98 @@
+.modal-progress-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-progress {
+  width: 426px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.modal-progress-title {
+  font-family: 'StratosSkyeng', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 110%;
+  letter-spacing: 0%;
+  color: #000000;
+  margin: 0;
+}
+
+.modal-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-height: 400px;
+  overflow-y: auto;
+  padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+  }
+}
+
+.modal-progress-item {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.question {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+}
+
+.progress-input {
+  width: 100%;
+  height: 52px;
+  padding: 16px 18px;
+  border: 1px solid #D0CECE;
+  border-radius: 8px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+    border-color: #BCEC30;
+  }
+}
+
+.modal-progress-save {
+  width: 100%;
+  height: 52px;
+  background-color: #BCEC30;
+  border: none;
+  border-radius: 46px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #a8d428;
+  }
+}
