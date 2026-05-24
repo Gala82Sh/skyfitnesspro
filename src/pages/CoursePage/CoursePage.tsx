@@ -3,11 +3,16 @@ import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getCourseById, type Course } from '@/api/courses'
 import UserMenu from '@/components/UserMenu/UserMenu'
+import { useAuth } from '@/hooks/useAuth'
+import { addCourseToUser } from '@/api/userCourses'
+import ModalAuth from '@/components/ModalAuth/ModalAuth'
 
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>()
   const [course, setCourse] = useState<Course | null>(null)
   const [loading, setLoading] = useState(true)
+  const { isAuth } = useAuth()
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
 
   useEffect(() => {
     if (!id) return
@@ -16,6 +21,19 @@ const CoursePage = () => {
       .catch(console.error)
       .finally(() => setLoading(false))
   }, [id])
+
+  const handleAddCourse = async () => {
+    if (!isAuth) {
+      setIsAuthModalOpen(true)
+      return
+    }
+    try {
+      await addCourseToUser(course!._id)
+      alert('Курс добавлен!')
+    } catch (err: any) {
+      alert(err.message)
+    }
+  }
 
   if (loading) return <div style={{ paddingTop: '180px' }}>Загрузка...</div>
   if (!course) return <div style={{ paddingTop: '180px' }}>Курс не найден</div>
@@ -62,9 +80,9 @@ const CoursePage = () => {
         </div>
 
         {/* Кнопка Вход */}
-<div style={{ position: 'absolute', top: '50px', right: '140px' }}>
-  <UserMenu />
-</div>
+        <div style={{ position: 'absolute', top: '50px', right: '140px' }}>
+          <UserMenu />
+        </div>
 
         {/* Картинка курса */}
         <img
@@ -408,20 +426,23 @@ const CoursePage = () => {
               <div>• упражнения заряжают бодростью</div>
               <div>• помогают противостоять стрессам</div>
             </div>
-            <button style={{
-              width: '437px',
-              padding: '16px 26px',
-              borderRadius: '46px',
-              backgroundColor: '#BCEC30',
-              border: 'none',
-              cursor: 'pointer',
-              fontFamily: 'Roboto, sans-serif',
-              fontSize: '16px',
-              fontWeight: '500',
-              color: '#000',
-              textAlign: 'center'
-            }}>
-              Войдите, чтобы добавить курс
+            <button
+              onClick={handleAddCourse}
+              style={{
+                width: '437px',
+                padding: '16px 26px',
+                borderRadius: '46px',
+                backgroundColor: '#BCEC30',
+                border: 'none',
+                cursor: 'pointer',
+                fontFamily: 'Roboto, sans-serif',
+                fontSize: '16px',
+                fontWeight: '500',
+                color: '#000',
+                textAlign: 'center'
+              }}
+            >
+              {isAuth ? 'Добавить курс' : 'Войдите, чтобы добавить курс'}
             </button>
           </div>
 
@@ -457,6 +478,8 @@ const CoursePage = () => {
         </div>
 
       </div>
+
+      <ModalAuth isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </div>
   )
 }

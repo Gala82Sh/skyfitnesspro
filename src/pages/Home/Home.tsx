@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'  
 import ModalAuth from '@/components/ModalAuth/ModalAuth'
 import { useAuth } from '@/hooks/useAuth'
 import { addCourseToUser } from '@/api/userCourses'
@@ -143,26 +144,33 @@ const Home = () => {
         />
 
         {/* Кнопка Вход */}
-<div style={{ position: 'absolute', top: '50px', right: '140px' }}>
-  <UserMenu />
-</div>
+        <div style={{ position: 'absolute', top: '50px', right: '140px' }}>
+          <UserMenu />
+        </div>
 
         {/* КАРТОЧКИ КУРСОВ */}
         {courses.map((course, index) => {
           const { top, left } = getCardPosition(index)
           return (
-            <div key={course._id} style={{
-              position: 'absolute',
-              top: `${top}px`,
-              left: `${left}px`,
-              width: '360px',
-              height: '501px',
-              backgroundColor: '#FFFFFF',
-              boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-              borderRadius: '30px',
-              overflow: 'hidden',
-              paddingBottom: '15px'
-            }}>
+            <Link
+              to={`/course/${course._id}`}
+              key={course._id}
+              style={{
+                position: 'absolute',
+                top: `${top}px`,
+                left: `${left}px`,
+                width: '360px',
+                height: '501px',
+                backgroundColor: '#FFFFFF',
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                borderRadius: '30px',
+                overflow: 'hidden',
+                paddingBottom: '15px',
+                textDecoration: 'none',
+                display: 'block',
+                color: 'inherit'
+              }}
+            >
               {/* Иконка + */}
               <img
                 src="/image/plus.svg"
@@ -176,7 +184,10 @@ const Home = () => {
                   cursor: 'pointer',
                   zIndex: 2
                 }}
-                onClick={() => handleAddCourse(course._id)}
+                onClick={(e) => {
+                  e.preventDefault()
+                  handleAddCourse(course._id)
+                }}
               />
               <img 
                 src={`/image/${course._id === 'ab1c3f' ? 'yoga' : course._id === 'kfpq8e' ? 'stretching' : course._id === 'ypox9r' ? 'fitness' : course._id === '6i67sm' ? 'step_aerobics' : 'bodyflex'}.svg`} 
@@ -202,7 +213,7 @@ const Home = () => {
                   <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1)}</span>
                 </div>
               </div>
-            </div>
+            </Link>
           )
         })}
 
