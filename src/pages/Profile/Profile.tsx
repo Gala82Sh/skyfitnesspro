@@ -5,6 +5,7 @@ import UserMenu from '@/components/UserMenu/UserMenu'
 import { getUserMe } from '@/api/user'
 import { getCourseProgress } from '@/api/progress'
 import ModalWorkoutSelection from '@/components/ModalWorkoutSelection/ModalWorkoutSelection'
+import { Link } from 'react-router-dom';
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
@@ -33,7 +34,7 @@ const Profile = () => {
             )
           ).then(async (courses) => {
             setUserCourses(courses)
-            // Загружаем прогресс для каждого курса
+            //прогресс для каждого курса
             const progressData = await Promise.all(
               courses.map(course =>
                 getCourseProgress(course._id).catch(() => null)
@@ -124,13 +125,13 @@ const Profile = () => {
   return (
     <div className="profile-page">
       <div className="profile-header">
-        <img
-          src="/image/logo.svg"
-          alt="SkyFitnessPro"
-          className="profile-logo"
-          onClick={() => navigate('/')}
-          style={{ cursor: 'pointer' }}
-        />
+        <Link to="/">
+          <img
+            src="/image/logo.svg"
+            alt="SkyFitnessPro"
+            className="profile-logo"
+          />
+        </Link>
         <UserMenu />
       </div>
 

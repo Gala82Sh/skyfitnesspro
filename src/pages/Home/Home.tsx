@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { addCourseToUser } from '@/api/userCourses'
 import { getAllCourses } from '@/api/courses'
 import UserMenu from '@/components/UserMenu/UserMenu'
+import './Home.css'
 
 const Home = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
@@ -54,17 +55,20 @@ const Home = () => {
         height: '100%'
       }}>
         {/* Логотип */}
-        <img
-          src="/image/logo.svg"
-          alt="SkyFitnessPro"
-          style={{
-            position: 'absolute',
-            top: '50px',
-            left: '140px',
-            width: '220px',
-            height: '35px'
-          }}
-        />
+        <Link to="/">
+  <img
+    className="home__logo"
+    src="/image/logo.svg"
+    alt="SkyFitnessPro"
+    style={{
+      position: 'absolute',
+      top: '50px',
+      left: '140px',
+      width: '220px',
+      height: '35px'
+    }}
+  />
+</Link>
 
         {/* Текст под логотипом */}
         <div
@@ -86,6 +90,7 @@ const Home = () => {
 
         {/* Заголовок */}
         <div
+          className="home__hero-title"
           style={{
             position: 'absolute',
             top: '180px',
@@ -144,106 +149,86 @@ const Home = () => {
         />
 
         {/* Кнопка Вход */}
-        <div style={{ position: 'absolute', top: '50px', right: '140px' }}>
-          <UserMenu />
-        </div>
+        <div className="home__user-menu" style={{ position: 'absolute', top: '50px', right: '140px' }}>
+  <UserMenu onOpenModal={() => setIsAuthModalOpen(true)} />
+</div>
 
         {/* КАРТОЧКИ КУРСОВ */}
-        {courses.map((course, index) => {
-          const { top, left } = getCardPosition(index)
-          return (
-            <Link
-              to={`/course/${course._id}`}
-              key={course._id}
-              style={{
-                position: 'absolute',
-                top: `${top}px`,
-                left: `${left}px`,
-                width: '360px',
-                height: '501px',
-                backgroundColor: '#FFFFFF',
-                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-                borderRadius: '30px',
-                overflow: 'hidden',
-                paddingBottom: '15px',
-                textDecoration: 'none',
-                display: 'block',
-                color: 'inherit'
-              }}
-            >
-              {/* Иконка + */}
-              <img
-                src="/image/plus.svg"
-                alt="Добавить курс"
+        <div className="home__courses-grid" style={{ position: 'relative' }}>
+          {courses.map((course, index) => {
+            const { top, left } = getCardPosition(index)
+            return (
+              <Link
+                to={`/course/${course._id}`}
+                key={course._id}
+                className="course-card"
                 style={{
                   position: 'absolute',
-                  top: '20px',
-                  right: '20px',
-                  width: '32px',
-                  height: '32px',
-                  cursor: 'pointer',
-                  zIndex: 2
+                  top: `${top}px`,
+                  left: `${left}px`,
+                  width: '360px',
+                  height: '501px',
+                  backgroundColor: '#FFFFFF',
+                  boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
+                  borderRadius: '30px',
+                  overflow: 'hidden',
+                  paddingBottom: '15px',
+                  textDecoration: 'none',
+                  display: 'block',
+                  color: 'inherit'
                 }}
-                onClick={(e) => {
-                  e.preventDefault()
-                  handleAddCourse(course._id)
-                }}
-              />
-              <img 
-                src={`/image/${course._id === 'ab1c3f' ? 'yoga' : course._id === 'kfpq8e' ? 'stretching' : course._id === 'ypox9r' ? 'fitness' : course._id === '6i67sm' ? 'step_aerobics' : 'bodyflex'}.svg`} 
-                alt={course.nameRU} 
-                style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} 
-              />
-              <div style={{ padding: '20px', boxSizing: 'border-box' }}>
-                <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>
-                  {course.nameRU}
-                </div>
-                <div style={{ display: 'flex', gap: '6px', marginBottom: '6px' }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px' }}>
-                    <img src="/image/data.svg" alt="data" />
-                    <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.durationInDays} дней</span>
+              >
+                {/* Иконка + */}
+                <img
+                  src="/image/plus.svg"
+                  alt="Добавить курс"
+                  style={{
+                    position: 'absolute',
+                    top: '20px',
+                    right: '20px',
+                    width: '32px',
+                    height: '32px',
+                    cursor: 'pointer',
+                    zIndex: 2
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault()
+                    handleAddCourse(course._id)
+                  }}
+                />
+                <img 
+                  src={`/image/${course._id === 'ab1c3f' ? 'yoga' : course._id === 'kfpq8e' ? 'stretching' : course._id === 'ypox9r' ? 'fitness' : course._id === '6i67sm' ? 'step_aerobics' : 'bodyflex'}.svg`} 
+                  alt={course.nameRU} 
+                  style={{ width: '360px', height: '325px', objectFit: 'cover', display: 'block' }} 
+                />
+                <div style={{ padding: '20px', boxSizing: 'border-box' }}>
+                  <div style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 700, fontSize: '32px', lineHeight: '110%', marginBottom: '20px' }}>
+                    {course.nameRU}
                   </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px' }}>
-                    <img src="/image/time.svg" alt="time" />
-                    <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to} мин/день</span>
+                  <div style={{ display: 'flex', gap: '6px', marginBottom: '6px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px' }}>
+                      <img src="/image/data.svg" alt="data" />
+                      <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.durationInDays} дней</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px' }}>
+                      <img src="/image/time.svg" alt="time" />
+                      <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to} мин/день</span>
+                    </div>
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px', width: 'fit-content' }}>
+                    <img src="/image/level.svg" alt="level" />
+                    <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1)}</span>
                   </div>
                 </div>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '6px', padding: '10px', backgroundColor: '#F7F7F7', borderRadius: '50px', width: 'fit-content' }}>
-                  <img src="/image/level.svg" alt="level" />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '16px', lineHeight: '110%' }}>{course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1)}</span>
-                </div>
-              </div>
-            </Link>
-          )
-        })}
+              </Link>
+            )
+          })}
+        </div>
 
         {/* Кнопка Наверх */}
-        <button
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{
-            position: 'absolute',
-            top: '1426px',
-            left: '656px',
-            padding: '16px 26px',
-            borderRadius: '46px',
-            backgroundColor: '#BCEC30',
-            border: 'none',
-            cursor: 'pointer',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '8px'
-          }}
-        >
-          <img
-            src="/image/text.svg"
-            alt="Наверх"
-            style={{
-              width: 'auto',
-              height: 'auto',
-              display: 'block'
-            }}
-          />
-        </button>
+        <button className="home__scroll-top" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+  <img src="/image/text.svg" alt="Наверх" />
+</button>
 
       </div>
 

@@ -1,0 +1,291 @@
+/* ========== ДЕСКТОПНЫЕ СТИЛИ ========== */
+.home {
+  background-color: #FAFAFA;
+  min-height: 100vh;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.logo {
+  position: absolute;
+  top: 50px;
+  left: 140px;
+  width: 220px;
+  height: 35px;
+}
+
+.subtitle {
+  position: absolute;
+  top: 100px;
+  left: 140px;
+  width: 327px;
+  opacity: 0.5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  margin: 0;
+}
+
+.heroTitle {
+  position: absolute;
+  top: 180px;
+  left: 140px;
+  width: 947px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 100%;
+  margin: 0;
+}
+
+.banner {
+  position: absolute;
+  top: 180px;
+  left: 1011px;
+  padding: 16px 20px;
+  background-color: #BCEC30;
+  border-radius: 5px;
+}
+
+.bannerText {
+  width: 248px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 110%;
+  margin: 0;
+}
+
+.bannerTail {
+  position: absolute;
+  top: 265px;
+  left: 1128px;
+  width: auto;
+  height: auto;
+}
+
+.userMenu {
+  position: absolute;
+  top: 50px;
+  right: 140px;
+}
+
+.coursesGrid {
+  position: relative;
+}
+
+.card {
+  position: absolute;
+}
+
+.cardPlus {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.cardImage {
+  width: 360px;
+  height: 325px;
+  object-fit: cover;
+  display: block;
+}
+
+.cardContent {
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.cardTitle {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 110%;
+  margin-bottom: 20px;
+}
+
+.cardInfo {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+.cardBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px;
+  background-color: #F7F7F7;
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 110%;
+}
+
+.home__scroll-top {
+   position: absolute;
+  top: 1426px;
+  left: 656px;
+  padding: 16px 26px;
+  background-color: #BCEC30;
+  border-radius: 46px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home__scroll-top img {
+  width: auto;
+  height: auto;
+  display: block;
+}
+
+
+/* ========== АДАПТИВ ДЛЯ МОБИЛЬНЫХ (ширина ≤ 768px) ========== */
+@media (max-width: 768px) {
+
+  /* Убираем горизонтальный скролл */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Контейнер */
+  .home__container {
+    padding-top: 40px !important;
+    background-color: #FAFAFA !important;
+  }
+
+  /* Логотип */
+  .home__logo {
+    position: relative !important;
+    top: 40px !important;
+    left: 16px !important;
+    width: 220px !important;
+    height: 35px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Меню и кнопка входа */
+  .home__user-menu {
+    top: 40px !important;
+    right: 16px !important;
+    text-align: right !important;
+    margin-bottom: 20px !important;
+    
+    
+  }
+
+  .home__user-menu button {
+    background-color: #BCEC30 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    font-size: 14px !important;
+    padding: 8px 16px !important;
+    border-radius: 46px !important;
+    font-size: 14px !important;
+    border: none !important;
+    cursor: pointer !important;
+    white-space: nowrap !important;
+  }
+
+  
+   .home__subtitle,
+  .home__banner,
+  .home__banner-tail {
+    display: none !important;
+  }
+
+ /* Заголовок */
+  .home__hero-title {
+     position: relative !important;
+    width: 327px !important;
+    top: 0 !important;
+    margin-top: 40px !important;  
+    left: 16px !important;
+    font-size: 32px !important;
+    font-weight: 500 !important;
+    line-height: 110% !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* Сетка карточек */
+  .home__courses-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+    margin-top: 34px !important;
+  }
+
+
+  /* Карточка курса */
+  .course-card {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 343px !important;
+    margin: 0 auto !important;
+    top: auto !important;
+    left: auto !important;
+  }
+
+   /* Название курса в карточке */
+  .course-card__title {
+    width: 300px !important;
+    height: 26px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 24px !important;
+    line-height: 110% !important;
+    letter-spacing: 0px !important;
+    margin-bottom: 20px !important;
+  }
+
+  /* Кнопка наверх — внутри сетки, под карточками */
+  .home__scroll-top {
+     position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    width: 127px !important;
+    height: 52px !important;
+    margin: 24px auto !important;
+    margin: 24px 16px 24px auto !important;
+    background-color: #BCEC30 !important;
+    border-radius: 46px !important;
+    border: none !important;
+    cursor: pointer !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .home__scroll-top img {
+    display: block !important;
+    width: auto !important;
+    height: auto !important;
+  }
+
+
+
+  div[style*="top: 100px"][style*="left: 140px"] {
+    display: none !important;
+  }
+
+ 
+}
+
+

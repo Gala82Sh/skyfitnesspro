@@ -3,7 +3,11 @@ import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useState, useRef } from 'react'
 import { getUserMe } from '@/api/user'
 
-const UserMenu = () => {
+interface UserMenuProps {
+  onOpenModal?: () => void;
+}
+
+const UserMenu = ({ onOpenModal }: UserMenuProps) => {
   const { isAuth } = useAuth()
   const navigate = useNavigate()
   const [userName, setUserName] = useState('')
@@ -50,7 +54,7 @@ const UserMenu = () => {
   if (!isAuth) {
     return (
       <button
-        onClick={() => navigate('/')}
+        onClick={onOpenModal}
         style={{
           padding: '16px 26px',
           borderRadius: '46px',

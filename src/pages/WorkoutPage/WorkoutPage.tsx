@@ -6,6 +6,7 @@ import { getWorkoutById } from '@/api/workouts'
 import { getCourseById } from '@/api/courses'
 import ModalProgress from '@/components/ModalProgress/ModalProgress'
 import ModalSuccess from '@/components/ModalSuccess/ModalSuccess'
+import { Link } from 'react-router-dom';
 
 const WorkoutPage = () => {
   const navigate = useNavigate()
@@ -63,18 +64,18 @@ const WorkoutPage = () => {
   }
 
   if (loading) {
-    return (
-      <div className="workout-page">
-        <div className="workout-header">
+  return (
+    <div className="workout-page">
+      <div className="workout-header">
+        <Link to="/">
           <img
             src="/image/logo.svg"
             alt="SkyFitnessPro"
             className="workout-logo"
-            onClick={() => navigate('/')}
-            style={{ cursor: 'pointer' }}
           />
-          <UserMenu />
-        </div>
+        </Link>
+        <UserMenu />
+      </div>
         <div className="workout-container">Загрузка...</div>
       </div>
     )

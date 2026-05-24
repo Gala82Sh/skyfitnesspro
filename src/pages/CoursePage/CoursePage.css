@@ -1,0 +1,203 @@
+/* ========== АДАПТИВ ДЛЯ СТРАНИЦЫ КУРСА ========== */
+@media (max-width: 768px) {
+
+  /* Логотип */
+  .course-logo {
+    position: relative !important;
+    top: 40px !important;
+    left: 16px !important;
+    width: 220px !important;
+    height: 35px !important;
+    margin-bottom: 20px !important;
+    display: inline-block;
+  
+  }
+
+  /* Ссылка вокруг логотипа */
+  .course-logo a {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
+  /* Меню пользователя (авторизованный блок) */
+  .course-usermenu {
+    position: relative !important;
+    top: -20px !important;           
+    right: 16px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    height: 35px !important;
+  }
+
+   
+  .course-usermenu > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .course-usermenu img:first-of-type {
+    width: 30px !important;
+    height: 30px !important;
+    display: block !important;
+  }
+
+  .course-usermenu span {
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #000 !important;
+    white-space: nowrap !important;
+    line-height: 1 !important;
+  }
+
+  .course-usermenu img:last-of-type {
+     width: 8px !important;
+    height: 4px !important;
+    display: block !important;
+  }
+
+  /* Текст под логотипом */
+  .course-subtitle {
+    display: none !important;
+  }
+
+  /* Картинка курса */
+  .course-image {
+    position: relative !important;
+    width: 343px !important;
+    height: 389px !important;
+    margin: 20px auto 0 !important;
+    top: auto !important;
+    left: 16px !important;
+    
+  }
+ 
+
+  /* Заголовок "Подойдет для вас, если:" */
+  .course-fitting-title {
+    position: relative !important;
+    width: 343px !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 110% !important;
+    margin: 30px auto 0 !important;
+    left: 0 !important;
+    top: auto !important;
+  }
+
+  /* Пункты 1,2,3 */
+  .course-fitting-item {
+    position: relative !important;
+    width: 343px !important;
+    margin: 16px auto !important;
+    left: 0 !important;
+    top: auto !important;
+  }
+
+  .course-fitting-number-text {
+    font-size: 60px !important;
+  }
+
+  .course-fitting-text {
+    font-size: 20px !important;
+  }
+
+  /* Блок направлений */
+  .course-directions-wrapper {
+    position: relative !important;
+    width: 343px !important;
+    margin: 40px auto !important;
+    left: 0 !important;
+    top: auto !important;
+  }
+
+  .course-directions-title {
+    width: 343px !important;
+    font-size: 24px !important;
+    font-weight: 500 !important;
+    line-height: 110% !important;
+  }
+
+  .course-directions-grid {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 20px !important;
+    padding: 20px !important;
+  }
+
+  .course-directions-column {
+    width: 100% !important;
+    height: auto !important;
+    gap: 15px !important;
+  }
+
+  .course-direction-item span {
+    font-size: 18px !important;
+  }
+
+  /* Блок "Начните путь" */
+  .course-start-block {
+    position: relative !important;
+    width: 343px !important;
+    margin: 40px auto !important;
+    left: 0 !important;
+    top: auto !important;
+    height: auto !important;
+    border-radius: 30px !important;
+    padding: 30px !important;
+  }
+
+  .course-start-block-content {
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    left: 0 !important;
+    top: 0 !important;
+    padding: 0 !important;
+  }
+
+  .course-start-block-title {
+    width: 100% !important;
+    font-size: 32px !important;
+    height: auto !important;
+  }
+
+  .course-start-block-list {
+    width: 100% !important;
+    font-size: 18px !important;
+  }
+
+  /* Кнопка добавления курса */
+  .course-add-button {
+    width: 283px !important;
+    margin: 20px auto !important;
+  }
+
+  /* Вектор и человек */
+  .course-vector,
+  img[src="/image/vector.svg"] {
+    position: absolute !important;
+    width: 431.03px !important;
+    height: 251.47px !important;
+    top: -150px !important;
+    left: -54px !important;
+    border: 10.14px solid !important;
+    transform: rotate(12.38deg) !important;
+    z-index: 1 !important;
+  }
+
+  .course-man,
+  img[src="/image/man_in_green.svg"] {
+    position: absolute !important;
+    width: 313.22px !important;
+    height: 348.91px !important;
+    top: -150px !important;
+    left: 97.42px !important;
+    transform: rotate(2.99deg) !important;
+    z-index: 1 !important;
+  }
+}

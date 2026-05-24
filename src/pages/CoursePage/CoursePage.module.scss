@@ -1,25 +1,218 @@
+/* ========== ДЕСКТОПНЫЕ СТИЛИ ========== */
 .course-page {
-  padding-top: 180px; 
-
-  &__image {
-    width: 1160px;
-    height: 310px;
-    border-radius: 30px;
-    object-fit: cover;
-    display: block;
-    margin: 0 auto; 
-  }
-
-  &__subtitle {
-    margin-top: 600px; 
-    width: 810px;
-    height: 44px;
-    font-family: Roboto, sans-serif;
-    font-weight: 600;
-    font-size: 40px;
-    line-height: 110%;
-    letter-spacing: 0px;
-    margin-left: 140px; 
-    margin-bottom: 0;
-  }
+  background-color: #FAFAFA;
+  min-height: 1703px;
 }
+
+.course-container {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  height: 100%;
+}
+
+.course-logo {
+  position: absolute;
+  top: 50px;
+  left: 140px;
+  width: 220px;
+  height: 35px;
+  
+}
+
+.course-subtitle {
+  position: absolute;
+  top: 100px;
+  left: 140px;
+  width: 327px;
+  opacity: 0.5;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 110%;
+  margin: 0;
+}
+
+.course-usermenu {
+  position: absolute;
+  top: 50px;
+  right: 140px;
+}
+
+.course-image {
+  position: absolute;
+  top: 180px;
+  left: 140px;
+  width: 1160px;
+  height: 310px;
+  border-radius: 30px;
+  object-fit: cover;
+}
+
+.course-fitting-title {
+  position: absolute;
+  top: 550px;
+  left: 140px;
+  width: 810px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 110%;
+  letter-spacing: 0px;
+  margin: 0;
+}
+
+.course-fitting-item {
+  position: absolute;
+  top: 620px;
+  background-color: #151720;
+  border-radius: 28px;
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 20px;
+}
+.course-fitting-item:nth-of-type(1) { left: 140px; width: 368px; }
+.course-fitting-item:nth-of-type(2) { left: 525px; width: 431px; }
+.course-fitting-item:nth-of-type(3) { left: 973px; width: 327px; }
+
+.course-fitting-number {
+  width: 35px;
+  height: 101px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.course-fitting-number-text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 75px;
+  line-height: 135%;
+  color: #BCEC30;
+}
+.course-fitting-text {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 110%;
+  color: #FFFFFF;
+}
+
+.course-directions-wrapper {
+  position: absolute;
+  top: 821px;
+  left: 140px;
+  width: 1160px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.course-directions-title {
+  width: 810px;
+  height: 44px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  font-size: 40px;
+  color: #000;
+}
+.course-directions-grid {
+  width: 1160px;
+  background-color: #BCEC30;
+  border-radius: 28px;
+  padding: 30px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+}
+.course-directions-column {
+  width: 284px;
+  height: 86px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.course-direction-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.course-direction-item span {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 110%;
+  color: #000;
+}
+
+.course-start-block {
+  position: absolute;
+  top: 1167px;
+  left: 140px;
+  width: 1160px;
+  height: 486px;
+  background-color: #FFFFFF;
+  border-radius: 30px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+.course-start-block-content {
+  position: absolute;
+  top: 40px;
+  left: 40px;
+  width: 437px;
+  height: 406px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.course-start-block-title {
+  width: 398px;
+  height: 120px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 100%;
+  color: #000;
+}
+.course-start-block-list {
+  width: 437px;
+  opacity: 0.6;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 110%;
+  color: #000;
+}
+.course-add-button {
+  width: 437px;
+  padding: 16px 26px;
+  border-radius: 46px;
+  background-color: #BCEC30;
+  border: none;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #000;
+  text-align: center;
+}
+.course-vector {
+  position: absolute;
+  top: 115.6px;
+  left: 445.06px;
+  width: 730.18px;
+  height: 420.98px;
+  transform: rotate(-0.01deg);
+}
+.course-man {
+  position: absolute;
+  top: -82.19px;
+  left: 610.99px;
+  width: 519.47px;
+  height: 539.54px;
+  transform: rotate(-0.99deg);
+}
+
