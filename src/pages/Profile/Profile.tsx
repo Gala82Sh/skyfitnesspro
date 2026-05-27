@@ -6,22 +6,15 @@ import { getUserMe } from '@/api/user'
 import { getCourseProgress } from '@/api/progress'
 import ModalWorkoutSelection from '@/components/ModalWorkoutSelection/ModalWorkoutSelection'
 import { Link } from 'react-router-dom'
-
-interface Workout {
-  _id: string
-  name: string
-  video: string
-  exercises?: { name: string; quantity: number }[]
-}
-
+import { Course, Workout } from '@/types'
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
 const Profile = () => {
   const navigate = useNavigate()
   const [user, setUser] = useState({ name: '', email: '' })
-  const [userCourses, setUserCourses] = useState([])
-  const [progressMap, setProgressMap] = useState({})
+  const [userCourses, setUserCourses] = useState<Course[]>([])
+  const [progressMap, setProgressMap] = useState<{ [key: string]: any }>({})
   const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false)
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null)
   const [courseWorkouts, setCourseWorkouts] = useState<Workout[]>([])
@@ -41,13 +34,13 @@ const Profile = () => {
               fetch(`${API_BASE_URL}/courses/${courseId}`).then((res) => res.json())
             )
           )
-            .then(async (courses) => {
+            .then(async (courses: Course[]) => {
               setUserCourses(courses)
               
               const progressData = await Promise.all(
                 courses.map((course) => getCourseProgress(course._id).catch(() => null))
               )
-              const map = {}
+              const map: { [key: string]: any } = {}
               courses.forEach((course, idx) => {
                 if (progressData[idx]) {
                   map[course._id] = progressData[idx]
@@ -109,60 +102,57 @@ const Profile = () => {
   }
 
   const handleCourseAction = async (courseId: string, isCompleted: boolean) => {
-  if (isCompleted) {
-    
-    try {
-      const token = localStorage.getItem('token')
-      const res = await fetch(
-        `https://wedev-api.sky.pro/api/fitness/courses/${courseId}/reset`,
-        {
-          method: 'PATCH',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      if (!res.ok) {
-        const error = await res.json()
-        throw new Error(error.message || 'Ошибка сброса прогресса')
-      }
-      alert('Прогресс курса сброшен!')
-      
-      
-      const updatedUser = await getUserMe()
-      const userData = updatedUser.user || updatedUser
-      if (userData.selectedCourses?.length) {
-        const coursesData = await Promise.all(
-          userData.selectedCourses.map((id: string) =>
-            fetch(`https://wedev-api.sky.pro/api/fitness/courses/${id}`).then(res => res.json())
-          )
-        )
-        setUserCourses(coursesData)
-        
-        
-        const progressData = await Promise.all(
-          coursesData.map(course =>
-            getCourseProgress(course._id).catch(() => null)
-          )
-        )
-        const map = {}
-        coursesData.forEach((course, idx) => {
-          if (progressData[idx]) {
-            map[course._id] = progressData[idx]
+    if (isCompleted) {
+      try {
+        const token = localStorage.getItem('token')
+        const res = await fetch(
+          `https://wedev-api.sky.pro/api/fitness/courses/${courseId}/reset`,
+          {
+            method: 'PATCH',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
           }
-        })
-        setProgressMap(map)
+        )
+        if (!res.ok) {
+          const error = await res.json()
+          throw new Error(error.message || 'Ошибка сброса прогресса')
+        }
+        alert('Прогресс курса сброшен!')
+        
+        const updatedUser = await getUserMe()
+        const userData = updatedUser.user || updatedUser
+        if (userData.selectedCourses?.length) {
+          const coursesData = await Promise.all(
+            userData.selectedCourses.map((id: string) =>
+              fetch(`${API_BASE_URL}/courses/${id}`).then(res => res.json())
+            )
+          )
+          setUserCourses(coursesData)
+          
+          const progressData = await Promise.all(
+            coursesData.map((course: Course) =>
+              getCourseProgress(course._id).catch(() => null)
+            )
+          )
+          const map: { [key: string]: any } = {}
+          coursesData.forEach((course, idx) => {
+            if (progressData[idx]) {
+              map[course._id] = progressData[idx]
+            }
+          })
+          setProgressMap(map)
+        }
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : 'Ошибка'
+        alert(message)
       }
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Ошибка'
-      alert(message)
+    } else {
+      setSelectedCourseId(courseId)
+      fetchCourseWorkouts(courseId)
+      setIsWorkoutModalOpen(true)
     }
-  } else {
-    setSelectedCourseId(courseId)
-    fetchCourseWorkouts(courseId)
-    setIsWorkoutModalOpen(true)
   }
-}
 
   const handleSelectWorkout = (workoutId: string) => {
     setSelectedWorkoutId(workoutId)
@@ -208,7 +198,7 @@ const Profile = () => {
               const progress = progressMap[course._id]
               const isCompleted = progress?.courseCompleted || false
               const completedCount =
-                progress?.workoutsProgress?.filter((w) => w.workoutCompleted).length || 0
+                progress?.workoutsProgress?.filter((w: any) => w.workoutCompleted).length || 0
               const totalCount = course.workouts?.length || 1
               const percent = Math.round((completedCount / totalCount) * 100)
 
@@ -235,7 +225,7 @@ const Profile = () => {
                       <div className="stat">
                         <img src="/image/time.svg" alt="time" />
                         <span>
-                          {course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to}{' '}
+                          {course.dailyDurationInMinutes?.from}–{course.dailyDurationInMinutes?.to}{' '}
                           мин/день
                         </span>
                       </div>
@@ -268,7 +258,6 @@ const Profile = () => {
         </div>
       </div>
 
-      {}
       <ModalWorkoutSelection
         isOpen={isWorkoutModalOpen}
         onClose={() => {

@@ -7,19 +7,19 @@ import { getCourseById } from '@/api/courses'
 import ModalProgress from '@/components/ModalProgress/ModalProgress'
 import ModalSuccess from '@/components/ModalSuccess/ModalSuccess'
 import { Link } from 'react-router-dom'
+import { Course, Workout } from '@/types'
 
 const WorkoutPage = () => {
   const navigate = useNavigate()
   const { courseId, workoutId } = useParams<{ courseId: string; workoutId: string }>()
-  const [workout, setWorkout] = useState(null)
-  const [course, setCourse] = useState(null)
+  const [workout, setWorkout] = useState<Workout | null>(null)
+  const [course, setCourse] = useState<Course | null>(null)
   const [loading, setLoading] = useState(true)
   const [isProgressModalOpen, setIsProgressModalOpen] = useState(false)
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
   const [progressMap, setProgressMap] = useState<{ [key: number]: number }>({})
   const [hasProgress, setHasProgress] = useState(false)
 
-  // Оборачиваем fetchProgress в useCallback, чтобы она не пересоздавалась
   const fetchProgress = useCallback(async () => {
     try {
       const token = localStorage.getItem('token')

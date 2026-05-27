@@ -6,10 +6,11 @@ import { addCourseToUser } from '@/api/userCourses'
 import { getAllCourses } from '@/api/courses'
 import UserMenu from '@/components/UserMenu/UserMenu'
 import './Home.css'
+import { Course } from '@/types'
 
 const Home = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
-  const [courses, setCourses] = useState([])
+  const [courses, setCourses] = useState<Course[]>([])
   const { isAuth } = useAuth()
 
   useEffect(() => {
@@ -262,8 +263,7 @@ const Home = () => {
                           lineHeight: '110%',
                         }}
                       >
-                        {course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to}{' '}
-                        мин/день
+                        {course.dailyDurationInMinutes?.from}–{course.dailyDurationInMinutes?.to} мин/день
                       </span>
                     </div>
                   </div>
@@ -287,7 +287,7 @@ const Home = () => {
                         lineHeight: '110%',
                       }}
                     >
-                      {course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1)}
+                      {course.difficulty ? course.difficulty.charAt(0).toUpperCase() + course.difficulty.slice(1) : 'Не указана'}
                     </span>
                   </div>
                 </div>
