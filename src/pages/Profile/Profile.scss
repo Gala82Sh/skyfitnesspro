@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .profile-page {
   background-color: #FFFFFF;
   min-height: 100vh;
@@ -246,7 +247,7 @@
 }
 
 .course-card {
-  position: relative;   
+  position: relative;
 }
 
 .course-delete {
@@ -257,4 +258,248 @@
   height: 32px;
   cursor: pointer;
   z-index: 2;
+}
+
+
+.profile-header > div:last-child > div {
+  width: 168.36px !important;
+  height: 50px !important;
+  gap: 12px !important;
+}
+
+.profile-header > div:last-child img:first-of-type {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.profile-header > div:last-child span {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 110% !important;
+}
+
+.profile-header > div:last-child img:last-of-type {
+  width: 8.03px !important;
+  height: 8.03px !important;
+
+}
+
+
+@media (max-width: 768px) {
+
+  
+  .profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 16px;
+    background-color: #FAFAFA;
+  }
+  .profile-logo {
+    width: 140px;
+    height: auto;
+  }
+
+ 
+  .profile-container {
+    padding: 20px 16px;
+  }
+
+  
+  .profile-title {
+    font-size: 28px;
+    margin-bottom: 24px;
+  }
+
+ 
+  .profile-card {
+  width: 343px;          
+  padding: 30px;         
+  border-radius: 30px;    
+  background-color: #FFFFFF;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  margin: 0 auto 40px;   
+}
+
+.profile-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;             
+  align-items: flex-start;
+  width: 100%;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;            
+  width: 100%;
+}
+
+  .profile-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;                
+  width: 100%;
+}
+
+.profile-name {
+  width: 283px;            
+  font-size: 24px;       
+  font-weight: 500;       
+  line-height: 110%;
+  margin: 0;
+}
+
+.profile-login {
+  width: 283px;            
+  font-size: 16px;         
+  font-weight: 400;
+  line-height: 110%;
+  margin: 0;
+}
+
+.profile-logout {
+  width: 283px;            
+  padding: 16px 26px;       
+  font-size: 16px;
+  border: 1px solid #000000;
+  border-radius: 46px;
+  background-color: transparent;
+  cursor: pointer;
+  margin-top: 0;           
+}
+
+.profile-avatar {
+  width: 141px;         
+  height: 141px;         
+  margin-top: 30px;      
+  align-self: center;     
+  object-fit: cover;
+}
+
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 16px 0 16px;  
+  background-color: #FAFAFA;
+}
+
+.profile-logo {
+    width: 220px;           
+  height: 35px;           
+  position: absolute;    
+  top: 40px;              
+  left: 16px;             
+}
+
+
+.profile-header > div:last-child span {
+  display: none !important;
+}
+
+
+.profile-header > div:last-child img:first-of-type {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+
+.profile-header > div:last-child img:last-of-type {
+  width: 8px !important;
+  height: 4px !important;
+}
+
+
+.profile-header > div:last-child > div {
+  gap: 10px !important;        
+  width: auto !important;
+  height: auto !important;
+}
+
+
+  
+  .profile-page .courses-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 24px !important;
+  }
+
+  .profile-page .course-card {
+    width: 343px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    background: #FFFFFF !important;
+    border-radius: 30px !important;
+    overflow: hidden !important;
+    padding-bottom: 15px !important;
+    gap: 24px !important;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  .profile-page .course-image {
+    width: 343px !important;
+    height: 325px !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    left: 0 !important; 
+  }
+
+  
+  .profile-page .course-content {
+    width: 300px !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 24px !important;
+    padding: 0 !important;
+    align-items: flex-start !important;
+  text-align: left !important;
+
+  }
+
+ 
+  .profile-page .course-title {
+    text-align: center !important;
+    margin: 0 !important;
+  }
+
+  .profile-page .course-progress {
+    gap: 8px !important;
+  }
+
+ 
+  .profile-page .course-btn {
+    width: 100% !important;
+    padding: 12px !important;
+    font-size: 14px !important;
+  }
+
+
+  .profile-page .progress-text {
+  width: 118px;           
+  height: 20px;            
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;          
+  font-size: 18px;          
+  line-height: 110%;        
+  letter-spacing: 0px;
+  color: #000000;           
+  margin: 0;
+  padding: 0;
+}
+ 
+  .profile-page,
+  .profile-header,
+  .profile-container,
+  .profile-card {
+    background-color: #FAFAFA !important;
+  }
 }

@@ -166,10 +166,10 @@ const Profile = () => {
                     className="course-delete"
                     onClick={() => handleDeleteCourse(course._id)}
                   />
-                  <img 
-                    src={`/image/${course._id === 'ab1c3f' ? 'yoga' : course._id === 'kfpq8e' ? 'stretching' : course._id === 'ypox9r' ? 'fitness' : course._id === '6i67sm' ? 'step_aerobics' : 'bodyflex'}.svg`} 
-                    alt={course.nameRU} 
-                    className="course-image" 
+                  <img
+                    src={`/image/${course._id === 'ab1c3f' ? 'yoga' : course._id === 'kfpq8e' ? 'stretching' : course._id === 'ypox9r' ? 'fitness' : course._id === '6i67sm' ? 'step_aerobics' : 'bodyflex'}.svg`}
+                    alt={course.nameRU}
+                    className="course-image"
                   />
                   <div className="course-content">
                     <h3 className="course-title">{course.nameRU}</h3>
@@ -188,19 +188,24 @@ const Profile = () => {
                       </div>
                     </div>
                     <div className="course-progress">
+                      <span className="progress-text">Прогресс {percent}%</span>
                       <div className="progress-bar">
-                        <div 
-                          className="progress-fill" 
-                          style={{ width: `${percent}%` }} 
+                        <div
+                          className="progress-fill"
+                          style={{ width: `${percent}%` }}
                         />
                       </div>
-                      <span className="progress-text">Прогресс {percent}%</span>
+
                     </div>
                     <button
                       className="course-btn"
-                      onClick={() => handleCourseAction(course._id, isCompleted)}
+                      onClick={() => handleCourseAction(course._id, isCompleted || percent === 100)}
                     >
-                      {isCompleted ? 'Начать заново' : 'Начать тренировки'}
+                      {percent === 100
+                        ? 'Начать заново'
+                        : percent > 0 && percent < 100
+                          ? 'Продолжить'
+                          : 'Начать тренировки'}
                     </button>
                   </div>
                 </div>

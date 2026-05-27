@@ -155,21 +155,42 @@
 }
 
 
-/* ========== АДАПТИВ ДЛЯ МОБИЛЬНЫХ (ширина ≤ 768px) ========== */
+.home__user-menu > div {
+  gap: 12px !important;
+}
+
+.home__user-menu img:first-of-type {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.home__user-menu span {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+}
+
+.home__user-menu img:last-of-type {
+  width: 8.03px !important;
+  height: 8.03px !important;
+  
+}
+
+
+
 @media (max-width: 768px) {
 
-  /* Убираем горизонтальный скролл */
+ 
   html, body {
     overflow-x: hidden;
   }
 
-  /* Контейнер */
+ 
   .home__container {
     padding-top: 40px !important;
     background-color: #FAFAFA !important;
   }
 
-  /* Логотип */
+ 
   .home__logo {
     position: relative !important;
     top: 40px !important;
@@ -179,7 +200,7 @@
     margin-bottom: 20px !important;
   }
 
-  /* Меню и кнопка входа */
+ 
   .home__user-menu {
     top: 40px !important;
     right: 16px !important;
@@ -209,7 +230,7 @@
     display: none !important;
   }
 
- /* Заголовок */
+
   .home__hero-title {
      position: relative !important;
     width: 327px !important;
@@ -222,7 +243,7 @@
     margin-bottom: 0 !important;
   }
 
-  /* Сетка карточек */
+ 
   .home__courses-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -232,7 +253,7 @@
   }
 
 
-  /* Карточка курса */
+ 
   .course-card {
     position: relative !important;
     width: 100% !important;
@@ -242,7 +263,7 @@
     left: auto !important;
   }
 
-   /* Название курса в карточке */
+  
   .course-card__title {
     width: 300px !important;
     height: 26px !important;
@@ -254,7 +275,7 @@
     margin-bottom: 20px !important;
   }
 
-  /* Кнопка наверх — внутри сетки, под карточками */
+  
   .home__scroll-top {
      position: relative !important;
     top: auto !important;
@@ -285,6 +306,27 @@
     display: none !important;
   }
 
+
+ 
+.home__user-menu > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+
+.home__user-menu img:first-of-type {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.home__user-menu span {
+  display: none !important;  
+}
+
+.home__user-menu img:last-of-type {
+  width: 8px !important;
+  height: 8px !important;
+}
  
 }
 

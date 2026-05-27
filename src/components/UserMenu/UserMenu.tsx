@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useState, useRef } from 'react'
 import { getUserMe } from '@/api/user'
+import styles from './UserMenu.module.scss' 
 
 interface UserMenuProps {
   onOpenModal?: () => void;
@@ -54,19 +55,8 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
   if (!isAuth) {
     return (
       <button
+        className={styles.loginButton}
         onClick={onOpenModal}
-        style={{
-          padding: '16px 26px',
-          borderRadius: '46px',
-          backgroundColor: '#BCEC30',
-          border: 'none',
-          cursor: 'pointer',
-          fontFamily: 'Roboto, sans-serif',
-          fontSize: '16px',
-          fontWeight: '500',
-          color: '#000',
-          whiteSpace: 'nowrap'
-        }}
       >
         Войти
       </button>
@@ -74,116 +64,33 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
   }
 
   return (
-    <div style={{ position: 'relative' }} ref={menuRef}>
-      {}
+    <div className={styles.userMenu} ref={menuRef}>
       <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          cursor: 'pointer'
-        }}
+        className={styles.userMenuTrigger}
         onClick={() => setIsOpen(!isOpen)}
       >
-        <img src="/image/profile.svg" alt="profile" style={{ width: '40px', height: '40px' }} />
-        <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 500, fontSize: '16px', color: '#000' }}>
-          {userName || 'Загрузка...'}
-        </span>
-        <img src="/image/arrow.svg" alt="arrow" style={{ width: '8.03px', height: '8.03px' }} />
+        <img src="/image/profile.svg" alt="profile" />
+        <span>{userName || 'Загрузка...'}</span>
+        <img src="/image/arrow.svg" alt="arrow" />
       </div>
 
-      {}
       {isOpen && (
-        <div
-          style={{
-            position: 'absolute',
-            top: '60px',
-            right: '0',
-            width: '266px',
-            backgroundColor: '#FFFFFF',
-            borderRadius: '30px',
-            padding: '30px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '34px',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
-            zIndex: 1000
-          }}
-        >
-          {}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px',
-              textAlign: 'center'
-            }}
-          >
-            <div
-              style={{
-                fontFamily: 'StratosSkyeng, sans-serif',
-                fontWeight: 400,
-                fontSize: '18px',
-                lineHeight: '110%',
-                color: '#000000'
-              }}
-            >
-              {userName}
-            </div>
-            <div
-              style={{
-                fontFamily: 'StratosSkyeng, sans-serif',
-                fontWeight: 400,
-                fontSize: '18px',
-                lineHeight: '110%',
-                color: '#999999'
-              }}
-            >
-              {userEmail}
-            </div>
+        <div className={styles.dropdown}>
+          <div className={styles.userInfo}>
+            <div className={styles.userName}>{userName}</div>
+            <div className={styles.userEmail}>{userEmail}</div>
           </div>
 
-          {}
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px'
-            }}
-          >
+          <div className={styles.buttons}>
             <button
               onClick={handleProfile}
-              style={{
-                width: '100%',
-                padding: '16px 26px',
-                borderRadius: '46px',
-                backgroundColor: '#BCEC30',
-                border: 'none',
-                cursor: 'pointer',
-                fontFamily: 'Roboto, sans-serif',
-                fontSize: '18px',
-                fontWeight: 400,
-                color: '#000000',
-                textAlign: 'center'
-              }}
+              className={styles.profileButton}
             >
               Мой профиль
             </button>
             <button
               onClick={handleLogout}
-              style={{
-                width: '100%',
-                padding: '16px 26px',
-                borderRadius: '46px',
-                backgroundColor: 'transparent',
-                border: '1px solid #000000',
-                cursor: 'pointer',
-                fontFamily: 'Roboto, sans-serif',
-                fontSize: '18px',
-                fontWeight: 400,
-                color: '#000000',
-                textAlign: 'center'
-              }}
+              className={styles.logoutButton}
             >
               Выйти
             </button>

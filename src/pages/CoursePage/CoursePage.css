@@ -1,7 +1,6 @@
 /* ========== АДАПТИВ ДЛЯ СТРАНИЦЫ КУРСА ========== */
 @media (max-width: 768px) {
 
-  /* Логотип */
   .course-logo {
     position: relative !important;
     top: 40px !important;
@@ -10,20 +9,19 @@
     height: 35px !important;
     margin-bottom: 20px !important;
     display: inline-block;
-  
   }
 
-  /* Ссылка вокруг логотипа */
+ 
   .course-logo a {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
   }
 
-  /* Меню пользователя (авторизованный блок) */
+ 
   .course-usermenu {
     position: relative !important;
-    top: -20px !important;           
+    top: -20px !important;
     right: 16px !important;
     display: flex !important;
     align-items: center !important;
@@ -31,7 +29,6 @@
     height: 35px !important;
   }
 
-   
   .course-usermenu > div {
     display: flex !important;
     align-items: center !important;
@@ -55,29 +52,27 @@
   }
 
   .course-usermenu img:last-of-type {
-     width: 8px !important;
+    width: 8px !important;
     height: 4px !important;
     display: block !important;
   }
 
-  /* Текст под логотипом */
+ 
   .course-subtitle {
     display: none !important;
   }
 
-  /* Картинка курса */
+ 
   .course-image {
     position: relative !important;
     width: 343px !important;
     height: 389px !important;
-    margin: 20px auto 0 !important;
+    margin: 120px auto 0 !important;
     top: auto !important;
     left: 16px !important;
     
   }
- 
 
-  /* Заголовок "Подойдет для вас, если:" */
   .course-fitting-title {
     position: relative !important;
     width: 343px !important;
@@ -89,7 +84,7 @@
     top: auto !important;
   }
 
-  /* Пункты 1,2,3 */
+  
   .course-fitting-item {
     position: relative !important;
     width: 343px !important;
@@ -106,13 +101,14 @@
     font-size: 20px !important;
   }
 
-  /* Блок направлений */
+ 
   .course-directions-wrapper {
     position: relative !important;
     width: 343px !important;
     margin: 40px auto !important;
     left: 0 !important;
     top: auto !important;
+    margin-bottom: 156px !important;
   }
 
   .course-directions-title {
@@ -139,7 +135,7 @@
     font-size: 18px !important;
   }
 
-  /* Блок "Начните путь" */
+  
   .course-start-block {
     position: relative !important;
     width: 343px !important;
@@ -171,13 +167,13 @@
     font-size: 18px !important;
   }
 
-  /* Кнопка добавления курса */
+  
   .course-add-button {
     width: 283px !important;
     margin: 20px auto !important;
   }
 
-  /* Вектор и человек */
+  
   .course-vector,
   img[src="/image/vector.svg"] {
     position: absolute !important;
@@ -185,7 +181,6 @@
     height: 251.47px !important;
     top: -150px !important;
     left: -54px !important;
-    border: 10.14px solid !important;
     transform: rotate(12.38deg) !important;
     z-index: 1 !important;
   }
@@ -195,9 +190,115 @@
     position: absolute !important;
     width: 313.22px !important;
     height: 348.91px !important;
-    top: -150px !important;
+    top: -260px !important;
     left: 97.42px !important;
-    transform: rotate(2.99deg) !important;
     z-index: 1 !important;
   }
+
+  a:has(.course-logo) {
+    display: block !important;
+    position: absolute !important;
+    top: 40px !important;
+    left: 16px !important;
+    width: 220px !important;
+    height: 35px !important;
+    z-index: 20 !important;
+  }
+
+ 
+  .logo-link {
+    display: block !important;
+    position: absolute !important;
+    top: 40px !important;
+    left: 16px !important;
+    width: 220px !important;
+    height: 35px !important;
+    z-index: 20 !important;
+  }
+
+
+  .course-logo {
+    width: 100% !important;
+    height: 100% !important;
+    position: static !important;
+    display: block !important;
+  }
+
+ 
+  .course-usermenu {
+    position: absolute !important;
+    top: 40px !important;
+    right: 16px !important;
+    z-index: 10 !important;
+    display: flex !important;
+    align-items: center !important;
+    height: 35px !important;
+  }
+
+  .course-container {
+    padding-top: 100px !important;
+  }
+
+  
+  .course-start-block {
+    position: relative !important;
+    z-index: 2 !important;
+    background-color: #FFFFFF !important;
+  }
+
+  
+  .course-start-block-images {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1 !important;
+    pointer-events: none !important;
+  }
+
+ 
+  .course-vector {
+    position: absolute !important;
+    width: 431.03px !important;
+    height: 251.47px !important;
+    top: -150px !important;
+    left: -54px !important;
+    transform: rotate(12.38deg) !important;
+  }
+
+  
+  .course-man {
+    position: absolute !important;
+    width: 313.22px !important;
+    height: 348.91px !important;
+    top: -260px !important;
+    left: 97.42px !important;
+    transform: rotate(2.99deg) !important;
+  }
+
+  
+.course-usermenu > div {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
 }
+
+.course-usermenu img:first-of-type {
+  width: 36px !important;
+  height: 36px !important;
+}
+
+.course-usermenu span {
+  display: none !important;
+}
+
+.course-usermenu img:last-of-type {
+  width: 8px !important;
+  height: 8px !important;
+}
+
+
+}
+
+

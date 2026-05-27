@@ -1,4 +1,3 @@
-import './CoursePage.module.scss'
 import { useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import { getCourseById, type Course } from '@/api/courses'
@@ -7,7 +6,8 @@ import { useAuth } from '@/hooks/useAuth'
 import { addCourseToUser } from '@/api/userCourses'
 import ModalAuth from '@/components/ModalAuth/ModalAuth'
 import './CoursePage.css'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+import './CoursePage.module.scss'
 
 const CoursePage = () => {
   const { id } = useParams<{ id: string }>()
@@ -42,29 +42,30 @@ const CoursePage = () => {
 
   return (
     <div style={{ backgroundColor: '#FAFAFA', minHeight: '1703px' }}>
-      <div style={{
-        position: 'relative',
-        width: '100%',
-        maxWidth: '1440px',
-        margin: '0 auto',
-        height: '100%'
-      }}>
-
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          maxWidth: '1440px',
+          margin: '0 auto',
+          height: '100%',
+        }}
+      >
         {/* Логотип */}
-        <Link to="/">
-  <img
-    className="course-logo"
-    src="/image/logo.svg"
-    alt="SkyFitnessPro"
-    style={{
-      position: 'absolute',
-      top: '50px',
-      left: '140px',
-      width: '220px',
-      height: '35px'
-    }}
-  />
-</Link>
+        <Link to="/" className="logo-link">
+          <img
+            className="course-logo"
+            src="/image/logo.svg"
+            alt="SkyFitnessPro"
+            style={{
+              position: 'absolute',
+              top: '50px',
+              left: '140px',
+              width: '220px',
+              height: '35px',
+            }}
+          />
+        </Link>
 
         {/* Текст под логотипом */}
         <div
@@ -79,47 +80,58 @@ const CoursePage = () => {
             fontWeight: '400',
             fontSize: '18px',
             lineHeight: '110%',
-            margin: 0
+            margin: 0,
           }}
         >
           Онлайн-тренировки для занятий дома
         </div>
 
-        {/* Кнопка Вход */}
-        <div className="course-usermenu" style={{ position: 'absolute', top: '50px', right: '140px' }}>
-  <UserMenu />
+        {/* Блок с меню пользователя */}
+<div className="course-usermenu" style={{ position: 'absolute', top: '50px', right: '140px' }}>
+  <UserMenu onOpenModal={() => setIsAuthModalOpen(true)} />
 </div>
 
         {/* Картинка курса */}
-       <picture>
-  <source media="(min-width: 769px)" srcSet={
-    course._id === 'ab1c3f' ? '/image/yoga2.svg' :
-    course._id === 'kfpq8e' ? '/image/stretching2.svg' :
-    course._id === 'ypox9r' ? '/image/fitness2.svg' :
-    course._id === '6i67sm' ? '/image/step_aerobics2.svg' :
-    '/image/bodyflex2.svg'
-  } />
-  <img
-    className="course-image"
-    src={
-      course._id === 'ab1c3f' ? '/image/yoga.svg' :
-      course._id === 'kfpq8e' ? '/image/stretching.svg' :
-      course._id === 'ypox9r' ? '/image/fitness.svg' :
-      course._id === '6i67sm' ? '/image/step_aerobics.svg' :
-      '/image/bodyflex.svg'
-    }
-    alt={course.nameRU}
-    style={{
-      position: 'absolute',
-      top: '180px',
-      left: '140px',
-      width: '1160px',
-      height: '310px',
-      borderRadius: '30px',
-      objectFit: 'cover'
-    }}
-  />
-</picture>
+        <picture>
+          <source
+            media="(min-width: 769px)"
+            srcSet={
+              course._id === 'ab1c3f'
+                ? '/image/yoga2.svg'
+                : course._id === 'kfpq8e'
+                ? '/image/stretching2.svg'
+                : course._id === 'ypox9r'
+                ? '/image/fitness2.svg'
+                : course._id === '6i67sm'
+                ? '/image/step_aerobics2.svg'
+                : '/image/bodyflex2.svg'
+            }
+          />
+          <img
+            className="course-image"
+            src={
+              course._id === 'ab1c3f'
+                ? '/image/yoga.svg'
+                : course._id === 'kfpq8e'
+                ? '/image/stretching.svg'
+                : course._id === 'ypox9r'
+                ? '/image/fitness.svg'
+                : course._id === '6i67sm'
+                ? '/image/step_aerobics.svg'
+                : '/image/bodyflex.svg'
+            }
+            alt={course.nameRU}
+            style={{
+              position: 'absolute',
+              top: '180px',
+              left: '140px',
+              width: '1160px',
+              height: '310px',
+              borderRadius: '30px',
+              objectFit: 'cover',
+            }}
+          />
+        </picture>
 
         {/* Заголовок "Подойдет для вас, если:" */}
         <div
@@ -134,7 +146,7 @@ const CoursePage = () => {
             fontSize: '40px',
             lineHeight: '110%',
             letterSpacing: '0px',
-            margin: 0
+            margin: 0,
           }}
         >
           Подойдет для вас, если:
@@ -153,38 +165,49 @@ const CoursePage = () => {
             display: 'flex',
             gap: '10px',
             alignItems: 'flex-start',
-            padding: '20px'
+            padding: '20px',
           }}
         >
-          <div className="course-fitting-number" style={{
-            width: '35px',
-            height: '101px',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <div className="course-fitting-number-text" style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontWeight: 500,
-              fontSize: '75px',
-              lineHeight: '135%',
-              letterSpacing: '0px',
-              color: '#BCEC30',
-              marginBottom: '20px'
-            }}>1</div>
+          <div
+            className="course-fitting-number"
+            style={{
+              width: '35px',
+              height: '101px',
+              flex: 'none',
+              order: 0,
+              flexGrow: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              className="course-fitting-number-text"
+              style={{
+                fontFamily: 'Roboto, sans-serif',
+                fontWeight: 500,
+                fontSize: '75px',
+                lineHeight: '135%',
+                letterSpacing: '0px',
+                color: '#BCEC30',
+                marginBottom: '20px',
+              }}
+            >
+              1
+            </div>
           </div>
-          <div className="course-fitting-text" style={{
-            width: '268px',
-            fontFamily: 'Roboto, sans-serif',
-            fontWeight: 400,
-            fontSize: '24px',
-            lineHeight: '110%',
-            letterSpacing: '0px',
-            color: '#FFFFFF'
-          }}>
+          <div
+            className="course-fitting-text"
+            style={{
+              width: '268px',
+              fontFamily: 'Roboto, sans-serif',
+              fontWeight: 400,
+              fontSize: '24px',
+              lineHeight: '110%',
+              letterSpacing: '0px',
+              color: '#FFFFFF',
+            }}
+          >
             {course.fitting[0]}
           </div>
         </div>
@@ -202,38 +225,49 @@ const CoursePage = () => {
             display: 'flex',
             gap: '10px',
             alignItems: 'flex-start',
-            padding: '20px'
+            padding: '20px',
           }}
         >
-          <div className="course-fitting-number" style={{
-            width: '43px',
-            height: '101px',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <div className="course-fitting-number-text" style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontWeight: 500,
-              fontSize: '75px',
-              lineHeight: '135%',
-              letterSpacing: '0px',
-              color: '#BCEC30',
-              marginBottom: '20px'
-            }}>2</div>
+          <div
+            className="course-fitting-number"
+            style={{
+              width: '43px',
+              height: '101px',
+              flex: 'none',
+              order: 0,
+              flexGrow: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              className="course-fitting-number-text"
+              style={{
+                fontFamily: 'Roboto, sans-serif',
+                fontWeight: 500,
+                fontSize: '75px',
+                lineHeight: '135%',
+                letterSpacing: '0px',
+                color: '#BCEC30',
+                marginBottom: '20px',
+              }}
+            >
+              2
+            </div>
           </div>
-          <div className="course-fitting-text" style={{
-            width: '323px',
-            fontFamily: 'Roboto, sans-serif',
-            fontWeight: 400,
-            fontSize: '24px',
-            lineHeight: '110%',
-            letterSpacing: '0px',
-            color: '#FFFFFF'
-          }}>
+          <div
+            className="course-fitting-text"
+            style={{
+              width: '323px',
+              fontFamily: 'Roboto, sans-serif',
+              fontWeight: 400,
+              fontSize: '24px',
+              lineHeight: '110%',
+              letterSpacing: '0px',
+              color: '#FFFFFF',
+            }}
+          >
             {course.fitting[1]}
           </div>
         </div>
@@ -251,38 +285,49 @@ const CoursePage = () => {
             display: 'flex',
             gap: '10px',
             alignItems: 'flex-start',
-            padding: '20px'
+            padding: '20px',
           }}
         >
-          <div className="course-fitting-number" style={{
-            width: '43px',
-            height: '101px',
-            flex: 'none',
-            order: 0,
-            flexGrow: 0,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
-          }}>
-            <div className="course-fitting-number-text" style={{
-              fontFamily: 'Roboto, sans-serif',
-              fontWeight: 500,
-              fontSize: '75px',
-              lineHeight: '135%',
-              letterSpacing: '0px',
-              color: '#BCEC30',
-              marginBottom: '20px'
-            }}>3</div>
+          <div
+            className="course-fitting-number"
+            style={{
+              width: '43px',
+              height: '101px',
+              flex: 'none',
+              order: 0,
+              flexGrow: 0,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <div
+              className="course-fitting-number-text"
+              style={{
+                fontFamily: 'Roboto, sans-serif',
+                fontWeight: 500,
+                fontSize: '75px',
+                lineHeight: '135%',
+                letterSpacing: '0px',
+                color: '#BCEC30',
+                marginBottom: '20px',
+              }}
+            >
+              3
+            </div>
           </div>
-          <div className="course-fitting-text" style={{
-            width: '219px',
-            fontFamily: 'Roboto, sans-serif',
-            fontWeight: 400,
-            fontSize: '24px',
-            lineHeight: '110%',
-            letterSpacing: '0px',
-            color: '#FFFFFF'
-          }}>
+          <div
+            className="course-fitting-text"
+            style={{
+              width: '219px',
+              fontFamily: 'Roboto, sans-serif',
+              fontWeight: 400,
+              fontSize: '24px',
+              lineHeight: '110%',
+              letterSpacing: '0px',
+              color: '#FFFFFF',
+            }}
+          >
             {course.fitting[2]}
           </div>
         </div>
@@ -297,7 +342,7 @@ const CoursePage = () => {
             width: '1160px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '40px'
+            gap: '40px',
           }}
         >
           <div
@@ -310,7 +355,7 @@ const CoursePage = () => {
               fontSize: '40px',
               lineHeight: '110%',
               letterSpacing: '0px',
-              color: '#000'
+              color: '#000',
             }}
           >
             Направления
@@ -324,82 +369,187 @@ const CoursePage = () => {
               padding: '30px',
               display: 'flex',
               gap: '10px',
-              justifyContent: 'space-between'
+              justifyContent: 'space-between',
             }}
           >
             {/* Первая колонка */}
-            <div className="course-directions-column" style={{
-              width: '284px',
-              height: '86px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between'
-            }}>
+            <div
+              className="course-directions-column"
+              style={{
+                width: '284px',
+                height: '86px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
               {course.directions[0] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[0].charAt(0).toUpperCase() + course.directions[0].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[0].charAt(0).toUpperCase() +
+                      course.directions[0].slice(1)}
                   </span>
                 </div>
               )}
               {course.directions[1] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[1].charAt(0).toUpperCase() + course.directions[1].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[1].charAt(0).toUpperCase() +
+                      course.directions[1].slice(1)}
                   </span>
                 </div>
               )}
             </div>
 
             {/* Вторая колонка */}
-            <div className="course-directions-column" style={{
-              width: '284px',
-              height: '86px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between'
-            }}>
+            <div
+              className="course-directions-column"
+              style={{
+                width: '284px',
+                height: '86px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
               {course.directions[2] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[2].charAt(0).toUpperCase() + course.directions[2].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[2].charAt(0).toUpperCase() +
+                      course.directions[2].slice(1)}
                   </span>
                 </div>
               )}
               {course.directions[3] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[3].charAt(0).toUpperCase() + course.directions[3].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[3].charAt(0).toUpperCase() +
+                      course.directions[3].slice(1)}
                   </span>
                 </div>
               )}
             </div>
 
             {/* Третья колонка */}
-            <div className="course-directions-column" style={{
-              width: '284px',
-              height: '86px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between'
-            }}>
+            <div
+              className="course-directions-column"
+              style={{
+                width: '284px',
+                height: '86px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+              }}
+            >
               {course.directions[4] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[4].charAt(0).toUpperCase() + course.directions[4].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[4].charAt(0).toUpperCase() +
+                      course.directions[4].slice(1)}
                   </span>
                 </div>
               )}
               {course.directions[5] && (
-                <div className="course-direction-item" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
-                  <span style={{ fontFamily: 'Roboto, sans-serif', fontWeight: 400, fontSize: '24px', lineHeight: '110%', color: '#000' }}>
-                    {course.directions[5].charAt(0).toUpperCase() + course.directions[5].slice(1)}
+                <div
+                  className="course-direction-item"
+                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
+                >
+                  <img
+                    src="/image/icon.svg"
+                    alt="icon"
+                    style={{ width: 'auto', height: 'auto' }}
+                  />
+                  <span
+                    style={{
+                      fontFamily: 'Roboto, sans-serif',
+                      fontWeight: 400,
+                      fontSize: '24px',
+                      lineHeight: '110%',
+                      color: '#000',
+                    }}
+                  >
+                    {course.directions[5].charAt(0).toUpperCase() +
+                      course.directions[5].slice(1)}
                   </span>
                 </div>
               )}
@@ -418,7 +568,7 @@ const CoursePage = () => {
             height: '486px',
             backgroundColor: '#FFFFFF',
             borderRadius: '30px',
-            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)'
+            boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.1)',
           }}
         >
           <div
@@ -431,7 +581,7 @@ const CoursePage = () => {
               height: '406px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '28px'
+              gap: '28px',
             }}
           >
             <div
@@ -444,10 +594,11 @@ const CoursePage = () => {
                 fontSize: '60px',
                 lineHeight: '100%',
                 letterSpacing: '0px',
-                color: '#000'
+                color: '#000',
               }}
             >
-              Начните путь <br />к новому телу
+              Начните путь <br />
+              к новому телу
             </div>
             <div
               className="course-start-block-list"
@@ -462,7 +613,7 @@ const CoursePage = () => {
                 fontSize: '24px',
                 lineHeight: '110%',
                 letterSpacing: '0px',
-                color: '#000'
+                color: '#000',
               }}
             >
               <div>• проработка всех групп мышц</div>
@@ -485,51 +636,51 @@ const CoursePage = () => {
                 fontSize: '16px',
                 fontWeight: '500',
                 color: '#000',
-                textAlign: 'center'
+                textAlign: 'center',
               }}
             >
               {isAuth ? 'Добавить курс' : 'Войдите, чтобы добавить курс'}
             </button>
           </div>
 
-          {/* Вектор */}
-          <img
-            className="course-vector"
-            src="/image/vector.svg"
-            alt="vector"
-            style={{
-              position: 'absolute',
-              top: '115.6px',
-              left: '445.06px',
-              width: '730.18px',
-              height: '420.98px',
-              transform: 'rotate(-0.01deg)',
-              boxSizing: 'border-box',
-              clipPath: 'inset(0 0 50px 0)'
-            }}
-          />
-
-          {/* Человек */}
-          <img
-            className="course-man"
-            src="/image/man_in_green.svg"
-            alt="man in green"
-            style={{
-              position: 'absolute',
-              top: '-82.19px',
-              left: '610.99px',
-              width: '519.47px',
-              height: '539.54px',
-              transform: 'rotate(-0.99deg)'
-            }}
-          />
+          {/* Контейнер для картинок (только для мобильной адаптации) */}
+          <div className="course-start-block-images">
+            <img
+              className="course-vector"
+              src="/image/vector.svg"
+              alt="vector"
+              style={{
+                position: 'absolute',
+                top: '115.6px',
+                left: '445.06px',
+                width: '730.18px',
+                height: '420.98px',
+                transform: 'rotate(-0.01deg)',
+                boxSizing: 'border-box',
+                clipPath: 'inset(0 0 50px 0)',
+              }}
+            />
+            <img
+              className="course-man"
+              src="/image/man_in_green.svg"
+              alt="man in green"
+              style={{
+                position: 'absolute',
+                top: '-82.19px',
+                left: '610.99px',
+                width: '519.47px',
+                height: '539.54px',
+                transform: 'rotate(-0.99deg)',
+              }}
+            />
+          </div>
         </div>
-
       </div>
 
-      <ModalAuth isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
-
-       
+      <ModalAuth
+        isOpen={isAuthModalOpen}
+        onClose={() => setIsAuthModalOpen(false)}
+      />
     </div>
   )
 }

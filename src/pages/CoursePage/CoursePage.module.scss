@@ -216,3 +216,58 @@
   transform: rotate(-0.99deg);
 }
 
+
+.course-usermenu > div > div {
+  width: 168.36px !important;
+  height: 50px !important;
+  gap: 12px !important;
+}
+
+.course-usermenu img:first-of-type {
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.course-usermenu span {
+  font-size: 24px !important;
+  font-weight: 400 !important;
+  line-height: 110% !important;
+}
+
+.course-usermenu img:last-of-type {
+  width: 8.03px !important;
+  height: 8.03px !important;
+  transform: rotate(-45deg) !important;
+}
+
+.course-usermenu {
+  position: absolute;
+  top: 50px;
+  right: 140px;
+}
+
+
+.course-usermenu {
+  :global {
+    .userMenuTrigger {
+      gap: 12px !important;
+
+      img:first-of-type {
+        width: 50px !important;
+        height: 50px !important;
+      }
+
+      span {
+        font-size: 24px !important;
+        font-weight: 400 !important;
+        line-height: 110% !important;
+      }
+
+      img:last-of-type {
+        width: 8.03px !important;
+        height: 8.03px !important;
+        transform: rotate(-45deg) !important;
+      }
+    }
+  }
+}
