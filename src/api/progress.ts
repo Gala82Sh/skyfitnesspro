@@ -15,9 +15,12 @@ export async function getWorkoutProgress(courseId: string, workoutId: string) {
   const token = localStorage.getItem('token')
   if (!token) throw new Error('Не авторизован')
 
-  const res = await fetch(`${API_BASE_URL}/users/me/progress?courseId=${courseId}&workoutId=${workoutId}`, {
-    headers: { Authorization: `Bearer ${token}` },
-  })
+  const res = await fetch(
+    `${API_BASE_URL}/users/me/progress?courseId=${courseId}&workoutId=${workoutId}`,
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  )
   if (!res.ok) throw new Error('Ошибка загрузки прогресса тренировки')
   return res.json()
 }

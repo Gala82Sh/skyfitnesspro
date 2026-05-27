@@ -2,14 +2,14 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/hooks/useAuth'
 import { useEffect, useState, useRef } from 'react'
 import { getUserMe } from '@/api/user'
-import styles from './UserMenu.module.scss' 
+import styles from './UserMenu.module.scss'
 
 interface UserMenuProps {
-  onOpenModal?: () => void;
+  onOpenModal?: () => void
 }
 
 const UserMenu = ({ onOpenModal }: UserMenuProps) => {
-  const { isAuth } = useAuth()
+  const { isAuth, logout } = useAuth()  
   const navigate = useNavigate()
   const [userName, setUserName] = useState('')
   const [userEmail, setUserEmail] = useState('')
@@ -19,7 +19,7 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
   useEffect(() => {
     if (isAuth) {
       getUserMe()
-        .then(data => {
+        .then((data) => {
           const user = data.user || data
           if (user?.email) {
             const nameFromEmail = user.email.split('@')[0]
@@ -42,7 +42,7 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
   }, [])
 
   const handleLogout = () => {
-    localStorage.removeItem('token')
+    logout()  
     navigate('/')
     setIsOpen(false)
   }
@@ -54,10 +54,7 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
 
   if (!isAuth) {
     return (
-      <button
-        className={styles.loginButton}
-        onClick={onOpenModal}
-      >
+      <button className={styles.loginButton} onClick={onOpenModal}>
         Войти
       </button>
     )
@@ -65,10 +62,7 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
 
   return (
     <div className={styles.userMenu} ref={menuRef}>
-      <div
-        className={styles.userMenuTrigger}
-        onClick={() => setIsOpen(!isOpen)}
-      >
+      <div className={styles.userMenuTrigger} onClick={() => setIsOpen(!isOpen)}>
         <img src="/image/profile.svg" alt="profile" />
         <span>{userName || 'Загрузка...'}</span>
         <img src="/image/arrow.svg" alt="arrow" />
@@ -82,16 +76,10 @@ const UserMenu = ({ onOpenModal }: UserMenuProps) => {
           </div>
 
           <div className={styles.buttons}>
-            <button
-              onClick={handleProfile}
-              className={styles.profileButton}
-            >
+            <button onClick={handleProfile} className={styles.profileButton}>
               Мой профиль
             </button>
-            <button
-              onClick={handleLogout}
-              className={styles.logoutButton}
-            >
+            <button onClick={handleLogout} className={styles.logoutButton}>
               Выйти
             </button>
           </div>

@@ -19,10 +19,20 @@ const ModalProgress = ({ isOpen, onClose, exercises, onSave }: ModalProgressProp
   if (!isOpen) return null
 
   const handleChange = (index: number, value: string) => {
-    const num = parseInt(value) || 0
     const newValues = [...progressValues]
-    newValues[index] = num
-    setProgressValues(newValues)
+
+    
+    if (value === '') {
+      newValues[index] = 0
+      setProgressValues(newValues)
+      return
+    }
+
+    const num = parseInt(value)
+    if (!isNaN(num)) {
+      newValues[index] = num
+      setProgressValues(newValues)
+    }
   }
 
   const handleSave = () => {
@@ -37,15 +47,14 @@ const ModalProgress = ({ isOpen, onClose, exercises, onSave }: ModalProgressProp
         <div className="modal-progress-list">
           {exercises.map((ex, idx) => (
             <div key={idx} className="modal-progress-item">
-              <div className="question">
-                Сколько раз вы сделали {ex.name.toLowerCase()}?
-              </div>
+              <div className="question">Сколько раз вы сделали {ex.name.toLowerCase()}?</div>
               <input
                 type="number"
                 className="progress-input"
-                value={progressValues[idx]}
+                value={progressValues[idx] === 0 ? '' : progressValues[idx]}
                 onChange={(e) => handleChange(idx, e.target.value)}
                 placeholder="0"
+                inputMode="numeric"
               />
             </div>
           ))}

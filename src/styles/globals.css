@@ -40,7 +40,8 @@ a {
   color: inherit;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -57,4 +58,3 @@ html, body {
 .app__main {
   flex: 1;
 }
-

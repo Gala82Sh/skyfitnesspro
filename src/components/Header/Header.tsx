@@ -1,19 +1,36 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import styles from './Header.module.scss'
+import { getUserMe } from '@/api/user'
+import { useAuth } from '@/hooks/useAuth'
 
 const Header = () => {
-
-  const [isAuth, setIsAuth] = useState(false)
   const navigate = useNavigate()
+  const { isAuth } = useAuth()
+  const [userName, setUserName] = useState('')
 
+  
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    console.log('Токен из localStorage:', token)
-    setIsAuth(!!token)
-  }, [])
+    if (!isAuth) return
+    
+    getUserMe()
+      .then(data => {
+        const user = data.user || data
+        if (user?.email) {
+          const nameFromEmail = user.email.split('@')[0]
+          setUserName(nameFromEmail)
+        }
+      })
+      .catch(console.error)
+  }, [isAuth])
 
-  console.log('Header рендерится, isAuth =', isAuth)
+  
+  useEffect(() => {
+    if (!isAuth) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setUserName('')
+    }
+  }, [isAuth])
 
   return (
     <header className={styles.header}>
@@ -25,7 +42,7 @@ const Header = () => {
         {isAuth ? (
           <div className={styles.userInfo} onClick={() => navigate('/profile')}>
             <img src="/image/profile.svg" alt="profile" className={styles.profileIcon} />
-            <span className={styles.username}>Сергей</span>
+            <span className={styles.username}>{userName || 'Пользователь'}</span>
             <img src="/image/arrow.svg" alt="arrow" className={styles.arrowIcon} />
           </div>
         ) : (

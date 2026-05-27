@@ -9,5 +9,5 @@ export async function getUserMe() {
   })
   if (!res.ok) throw new Error('Ошибка загрузки пользователя')
   const data = await res.json()
-  return data.user  
+  return data.user
 }

@@ -1,6 +1,4 @@
-/* ========== АДАПТИВ ДЛЯ СТРАНИЦЫ КУРСА ========== */
 @media (max-width: 768px) {
-
   .course-logo {
     position: relative !important;
     top: 40px !important;
@@ -11,14 +9,12 @@
     display: inline-block;
   }
 
- 
   .course-logo a {
     display: block !important;
     width: 100% !important;
     height: 100% !important;
   }
 
- 
   .course-usermenu {
     position: relative !important;
     top: -20px !important;
@@ -57,12 +53,10 @@
     display: block !important;
   }
 
- 
   .course-subtitle {
     display: none !important;
   }
 
- 
   .course-image {
     position: relative !important;
     width: 343px !important;
@@ -70,7 +64,6 @@
     margin: 120px auto 0 !important;
     top: auto !important;
     left: 16px !important;
-    
   }
 
   .course-fitting-title {
@@ -84,7 +77,6 @@
     top: auto !important;
   }
 
-  
   .course-fitting-item {
     position: relative !important;
     width: 343px !important;
@@ -101,7 +93,6 @@
     font-size: 20px !important;
   }
 
- 
   .course-directions-wrapper {
     position: relative !important;
     width: 343px !important;
@@ -135,7 +126,6 @@
     font-size: 18px !important;
   }
 
-  
   .course-start-block {
     position: relative !important;
     width: 343px !important;
@@ -167,15 +157,13 @@
     font-size: 18px !important;
   }
 
-  
   .course-add-button {
     width: 283px !important;
     margin: 20px auto !important;
   }
 
-  
   .course-vector,
-  img[src="/image/vector.svg"] {
+  img[src='/image/vector.svg'] {
     position: absolute !important;
     width: 431.03px !important;
     height: 251.47px !important;
@@ -186,7 +174,7 @@
   }
 
   .course-man,
-  img[src="/image/man_in_green.svg"] {
+  img[src='/image/man_in_green.svg'] {
     position: absolute !important;
     width: 313.22px !important;
     height: 348.91px !important;
@@ -205,7 +193,6 @@
     z-index: 20 !important;
   }
 
- 
   .logo-link {
     display: block !important;
     position: absolute !important;
@@ -216,7 +203,6 @@
     z-index: 20 !important;
   }
 
-
   .course-logo {
     width: 100% !important;
     height: 100% !important;
@@ -224,7 +210,6 @@
     display: block !important;
   }
 
- 
   .course-usermenu {
     position: absolute !important;
     top: 40px !important;
@@ -239,14 +224,19 @@
     padding-top: 100px !important;
   }
 
-  
   .course-start-block {
     position: relative !important;
     z-index: 2 !important;
-    background-color: #FFFFFF !important;
+    background-color: #ffffff !important;
+    overflow: visible !important;
   }
 
-  
+  .course-start-block-content {
+    position: relative !important;
+    z-index: 3 !important;
+    background-color: #ffffff;
+  }
+
   .course-start-block-images {
     position: absolute !important;
     top: 0 !important;
@@ -255,50 +245,49 @@
     height: 100% !important;
     z-index: 1 !important;
     pointer-events: none !important;
+    overflow: visible !important;
   }
 
- 
   .course-vector {
     position: absolute !important;
     width: 431.03px !important;
     height: 251.47px !important;
-    top: -150px !important;
+    top: -100px !important;
     left: -54px !important;
     transform: rotate(12.38deg) !important;
+    z-index: 1 !important;
   }
 
-  
-  .course-man {
+  .course-man,
+  img[src='/image/man_in_green.svg'] {
     position: absolute !important;
     width: 313.22px !important;
     height: 348.91px !important;
-    top: -260px !important;
-    left: 97.42px !important;
+    top: -250px !important;
+    left: 50px !important;
+    z-index: 1 !important;
     transform: rotate(2.99deg) !important;
+    overflow: hidden;
+    z-index: 0;
   }
 
-  
-.course-usermenu > div {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
+  .course-usermenu > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+
+  .course-usermenu img:first-of-type {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .course-usermenu span {
+    display: none !important;
+  }
+
+  .course-usermenu img:last-of-type {
+    width: 8px !important;
+    height: 8px !important;
+  }
 }
-
-.course-usermenu img:first-of-type {
-  width: 36px !important;
-  height: 36px !important;
-}
-
-.course-usermenu span {
-  display: none !important;
-}
-
-.course-usermenu img:last-of-type {
-  width: 8px !important;
-  height: 8px !important;
-}
-
-
-}
-
-

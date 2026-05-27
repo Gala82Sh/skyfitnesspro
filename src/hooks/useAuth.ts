@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 export const useAuth = () => {
-  const [isAuth, setIsAuth] = useState(false)
-
-  useEffect(() => {
+  const [isAuth, setIsAuth] = useState(() => {
     const token = localStorage.getItem('token')
-    setIsAuth(!!token)
-  }, [])
+    return !!token
+  })
 
   const login = (token: string) => {
     localStorage.setItem('token', token)

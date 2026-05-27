@@ -5,7 +5,15 @@ import UserMenu from '@/components/UserMenu/UserMenu'
 import { getUserMe } from '@/api/user'
 import { getCourseProgress } from '@/api/progress'
 import ModalWorkoutSelection from '@/components/ModalWorkoutSelection/ModalWorkoutSelection'
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
+
+interface Workout {
+  _id: string
+  name: string
+  video: string
+  exercises?: { name: string; quantity: number }[]
+}
+
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
@@ -16,12 +24,12 @@ const Profile = () => {
   const [progressMap, setProgressMap] = useState({})
   const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false)
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null)
-  const [courseWorkouts, setCourseWorkouts] = useState<any[]>([])
+  const [courseWorkouts, setCourseWorkouts] = useState<Workout[]>([])
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<string | null>(null)
 
   useEffect(() => {
     getUserMe()
-      .then(data => {
+      .then((data) => {
         const userData = data.user || data
         if (userData?.email) {
           const nameFromEmail = userData.email.split('@')[0]
@@ -30,24 +38,24 @@ const Profile = () => {
         if (userData.selectedCourses?.length) {
           Promise.all(
             userData.selectedCourses.map((courseId: string) =>
-              fetch(`${API_BASE_URL}/courses/${courseId}`).then(res => res.json())
+              fetch(`${API_BASE_URL}/courses/${courseId}`).then((res) => res.json())
             )
-          ).then(async (courses) => {
-            setUserCourses(courses)
-            //прогресс для каждого курса
-            const progressData = await Promise.all(
-              courses.map(course =>
-                getCourseProgress(course._id).catch(() => null)
+          )
+            .then(async (courses) => {
+              setUserCourses(courses)
+              
+              const progressData = await Promise.all(
+                courses.map((course) => getCourseProgress(course._id).catch(() => null))
               )
-            )
-            const map = {}
-            courses.forEach((course, idx) => {
-              if (progressData[idx]) {
-                map[course._id] = progressData[idx]
-              }
+              const map = {}
+              courses.forEach((course, idx) => {
+                if (progressData[idx]) {
+                  map[course._id] = progressData[idx]
+                }
+              })
+              setProgressMap(map)
             })
-            setProgressMap(map)
-          }).catch(console.error)
+            .catch(console.error)
         }
       })
       .catch(console.error)
@@ -87,10 +95,11 @@ const Profile = () => {
         throw new Error(error.message || 'Ошибка удаления курса')
       }
 
-      setUserCourses(prev => prev.filter(c => c._id !== courseId))
+      setUserCourses((prev) => prev.filter((c) => c._id !== courseId))
       alert('Курс удалён')
-    } catch (err: any) {
-      alert(err.message)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Ошибка'
+      alert(message)
     }
   }
 
@@ -99,15 +108,61 @@ const Profile = () => {
     navigate('/')
   }
 
-  const handleCourseAction = (courseId: string, isCompleted: boolean) => {
-    if (isCompleted) {
-      alert('Сброс прогресса курса')
-    } else {
-      setSelectedCourseId(courseId)
-      fetchCourseWorkouts(courseId)
-      setIsWorkoutModalOpen(true)
+  const handleCourseAction = async (courseId: string, isCompleted: boolean) => {
+  if (isCompleted) {
+    
+    try {
+      const token = localStorage.getItem('token')
+      const res = await fetch(
+        `https://wedev-api.sky.pro/api/fitness/courses/${courseId}/reset`,
+        {
+          method: 'PATCH',
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      if (!res.ok) {
+        const error = await res.json()
+        throw new Error(error.message || 'Ошибка сброса прогресса')
+      }
+      alert('Прогресс курса сброшен!')
+      
+      
+      const updatedUser = await getUserMe()
+      const userData = updatedUser.user || updatedUser
+      if (userData.selectedCourses?.length) {
+        const coursesData = await Promise.all(
+          userData.selectedCourses.map((id: string) =>
+            fetch(`https://wedev-api.sky.pro/api/fitness/courses/${id}`).then(res => res.json())
+          )
+        )
+        setUserCourses(coursesData)
+        
+        
+        const progressData = await Promise.all(
+          coursesData.map(course =>
+            getCourseProgress(course._id).catch(() => null)
+          )
+        )
+        const map = {}
+        coursesData.forEach((course, idx) => {
+          if (progressData[idx]) {
+            map[course._id] = progressData[idx]
+          }
+        })
+        setProgressMap(map)
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Ошибка'
+      alert(message)
     }
+  } else {
+    setSelectedCourseId(courseId)
+    fetchCourseWorkouts(courseId)
+    setIsWorkoutModalOpen(true)
   }
+}
 
   const handleSelectWorkout = (workoutId: string) => {
     setSelectedWorkoutId(workoutId)
@@ -126,11 +181,7 @@ const Profile = () => {
     <div className="profile-page">
       <div className="profile-header">
         <Link to="/">
-          <img
-            src="/image/logo.svg"
-            alt="SkyFitnessPro"
-            className="profile-logo"
-          />
+          <img src="/image/logo.svg" alt="SkyFitnessPro" className="profile-logo" />
         </Link>
         <UserMenu />
       </div>
@@ -143,7 +194,9 @@ const Profile = () => {
             <div className="profile-details">
               <div className="profile-name">{user.name}</div>
               <div className="profile-login">Логин: {user.email}</div>
-              <button className="profile-logout" onClick={handleLogout}>Выйти</button>
+              <button className="profile-logout" onClick={handleLogout}>
+                Выйти
+              </button>
             </div>
           </div>
         </div>
@@ -151,10 +204,11 @@ const Profile = () => {
         <div className="profile-courses">
           <h2 className="courses-title">Мои курсы</h2>
           <div className="courses-grid">
-            {userCourses.map(course => {
+            {userCourses.map((course) => {
               const progress = progressMap[course._id]
               const isCompleted = progress?.courseCompleted || false
-              const completedCount = progress?.workoutsProgress?.filter(w => w.workoutCompleted).length || 0
+              const completedCount =
+                progress?.workoutsProgress?.filter((w) => w.workoutCompleted).length || 0
               const totalCount = course.workouts?.length || 1
               const percent = Math.round((completedCount / totalCount) * 100)
 
@@ -180,7 +234,10 @@ const Profile = () => {
                       </div>
                       <div className="stat">
                         <img src="/image/time.svg" alt="time" />
-                        <span>{course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to} мин/день</span>
+                        <span>
+                          {course.dailyDurationInMinutes.from}–{course.dailyDurationInMinutes.to}{' '}
+                          мин/день
+                        </span>
                       </div>
                       <div className="stat">
                         <img src="/image/level.svg" alt="level" />
@@ -190,12 +247,8 @@ const Profile = () => {
                     <div className="course-progress">
                       <span className="progress-text">Прогресс {percent}%</span>
                       <div className="progress-bar">
-                        <div
-                          className="progress-fill"
-                          style={{ width: `${percent}%` }}
-                        />
+                        <div className="progress-fill" style={{ width: `${percent}%` }} />
                       </div>
-
                     </div>
                     <button
                       className="course-btn"
@@ -215,7 +268,7 @@ const Profile = () => {
         </div>
       </div>
 
-      {/* Модальное окно выбора тренировки */}
+      {}
       <ModalWorkoutSelection
         isOpen={isWorkoutModalOpen}
         onClose={() => {

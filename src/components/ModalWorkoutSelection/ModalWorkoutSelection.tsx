@@ -33,7 +33,6 @@ const ModalWorkoutSelection = ({
         <h2 className="modal-title">Выберите тренировку</h2>
         <div className="workouts-list">
           {workouts.map((workout) => {
-            
             const { firstLine, secondLine } = formatWorkoutName(workout.name)
             return (
               <div

@@ -109,7 +109,11 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <img src="/image/logo.svg" alt="SkyFitnessPro" style={{ width: '220px', height: '35px' }} />
+          <img
+            src="/image/logo.svg"
+            alt="SkyFitnessPro"
+            style={{ width: '220px', height: '35px' }}
+          />
         </div>
 
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column' }}>
@@ -212,7 +216,9 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
             </div>
           )}
 
-          {error && <div style={{ color: 'red', fontSize: '14px', marginBottom: '10px' }}>{error}</div>}
+          {error && (
+            <div style={{ color: 'red', fontSize: '14px', marginBottom: '10px' }}>{error}</div>
+          )}
 
           <button
             type="submit"

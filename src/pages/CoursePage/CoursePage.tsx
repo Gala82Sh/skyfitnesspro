@@ -32,8 +32,9 @@ const CoursePage = () => {
     try {
       await addCourseToUser(course!._id)
       alert('Курс добавлен!')
-    } catch (err: any) {
-      alert(err.message)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Ошибка'
+      alert(message)
     }
   }
 
@@ -51,7 +52,7 @@ const CoursePage = () => {
           height: '100%',
         }}
       >
-        {/* Логотип */}
+        {}
         <Link to="/" className="logo-link">
           <img
             className="course-logo"
@@ -67,7 +68,7 @@ const CoursePage = () => {
           />
         </Link>
 
-        {/* Текст под логотипом */}
+        {}
         <div
           className="course-subtitle"
           style={{
@@ -86,12 +87,15 @@ const CoursePage = () => {
           Онлайн-тренировки для занятий дома
         </div>
 
-        {/* Блок с меню пользователя */}
-<div className="course-usermenu" style={{ position: 'absolute', top: '50px', right: '140px' }}>
-  <UserMenu onOpenModal={() => setIsAuthModalOpen(true)} />
-</div>
+        {}
+        <div
+          className="course-usermenu"
+          style={{ position: 'absolute', top: '50px', right: '140px' }}
+        >
+          <UserMenu onOpenModal={() => setIsAuthModalOpen(true)} />
+        </div>
 
-        {/* Картинка курса */}
+        {}
         <picture>
           <source
             media="(min-width: 769px)"
@@ -99,12 +103,12 @@ const CoursePage = () => {
               course._id === 'ab1c3f'
                 ? '/image/yoga2.svg'
                 : course._id === 'kfpq8e'
-                ? '/image/stretching2.svg'
-                : course._id === 'ypox9r'
-                ? '/image/fitness2.svg'
-                : course._id === '6i67sm'
-                ? '/image/step_aerobics2.svg'
-                : '/image/bodyflex2.svg'
+                  ? '/image/stretching2.svg'
+                  : course._id === 'ypox9r'
+                    ? '/image/fitness2.svg'
+                    : course._id === '6i67sm'
+                      ? '/image/step_aerobics2.svg'
+                      : '/image/bodyflex2.svg'
             }
           />
           <img
@@ -113,12 +117,12 @@ const CoursePage = () => {
               course._id === 'ab1c3f'
                 ? '/image/yoga.svg'
                 : course._id === 'kfpq8e'
-                ? '/image/stretching.svg'
-                : course._id === 'ypox9r'
-                ? '/image/fitness.svg'
-                : course._id === '6i67sm'
-                ? '/image/step_aerobics.svg'
-                : '/image/bodyflex.svg'
+                  ? '/image/stretching.svg'
+                  : course._id === 'ypox9r'
+                    ? '/image/fitness.svg'
+                    : course._id === '6i67sm'
+                      ? '/image/step_aerobics.svg'
+                      : '/image/bodyflex.svg'
             }
             alt={course.nameRU}
             style={{
@@ -133,7 +137,7 @@ const CoursePage = () => {
           />
         </picture>
 
-        {/* Заголовок "Подойдет для вас, если:" */}
+        {}
         <div
           className="course-fitting-title"
           style={{
@@ -152,7 +156,7 @@ const CoursePage = () => {
           Подойдет для вас, если:
         </div>
 
-        {/* Пункт 1 */}
+        {}
         <div
           className="course-fitting-item"
           style={{
@@ -212,7 +216,7 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {/* Пункт 2 */}
+        {}
         <div
           className="course-fitting-item"
           style={{
@@ -272,7 +276,7 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {/* Пункт 3 */}
+        {}
         <div
           className="course-fitting-item"
           style={{
@@ -332,7 +336,7 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {/* Блок Направления */}
+        {}
         <div
           className="course-directions-wrapper"
           style={{
@@ -372,7 +376,7 @@ const CoursePage = () => {
               justifyContent: 'space-between',
             }}
           >
-            {/* Первая колонка */}
+            {}
             <div
               className="course-directions-column"
               style={{
@@ -388,11 +392,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -402,8 +402,7 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[0].charAt(0).toUpperCase() +
-                      course.directions[0].slice(1)}
+                    {course.directions[0].charAt(0).toUpperCase() + course.directions[0].slice(1)}
                   </span>
                 </div>
               )}
@@ -412,11 +411,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -426,14 +421,13 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[1].charAt(0).toUpperCase() +
-                      course.directions[1].slice(1)}
+                    {course.directions[1].charAt(0).toUpperCase() + course.directions[1].slice(1)}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Вторая колонка */}
+            {}
             <div
               className="course-directions-column"
               style={{
@@ -449,11 +443,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -463,8 +453,7 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[2].charAt(0).toUpperCase() +
-                      course.directions[2].slice(1)}
+                    {course.directions[2].charAt(0).toUpperCase() + course.directions[2].slice(1)}
                   </span>
                 </div>
               )}
@@ -473,11 +462,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -487,14 +472,13 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[3].charAt(0).toUpperCase() +
-                      course.directions[3].slice(1)}
+                    {course.directions[3].charAt(0).toUpperCase() + course.directions[3].slice(1)}
                   </span>
                 </div>
               )}
             </div>
 
-            {/* Третья колонка */}
+            {}
             <div
               className="course-directions-column"
               style={{
@@ -510,11 +494,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -524,8 +504,7 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[4].charAt(0).toUpperCase() +
-                      course.directions[4].slice(1)}
+                    {course.directions[4].charAt(0).toUpperCase() + course.directions[4].slice(1)}
                   </span>
                 </div>
               )}
@@ -534,11 +513,7 @@ const CoursePage = () => {
                   className="course-direction-item"
                   style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
                 >
-                  <img
-                    src="/image/icon.svg"
-                    alt="icon"
-                    style={{ width: 'auto', height: 'auto' }}
-                  />
+                  <img src="/image/icon.svg" alt="icon" style={{ width: 'auto', height: 'auto' }} />
                   <span
                     style={{
                       fontFamily: 'Roboto, sans-serif',
@@ -548,8 +523,7 @@ const CoursePage = () => {
                       color: '#000',
                     }}
                   >
-                    {course.directions[5].charAt(0).toUpperCase() +
-                      course.directions[5].slice(1)}
+                    {course.directions[5].charAt(0).toUpperCase() + course.directions[5].slice(1)}
                   </span>
                 </div>
               )}
@@ -557,7 +531,7 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {/* Блок "Начните путь к новому телу" */}
+        {}
         <div
           className="course-start-block"
           style={{
@@ -597,8 +571,7 @@ const CoursePage = () => {
                 color: '#000',
               }}
             >
-              Начните путь <br />
-              к новому телу
+              Начните путь <br />к новому телу
             </div>
             <div
               className="course-start-block-list"
@@ -643,7 +616,7 @@ const CoursePage = () => {
             </button>
           </div>
 
-          {/* Контейнер для картинок (только для мобильной адаптации) */}
+          {}
           <div className="course-start-block-images">
             <img
               className="course-vector"
@@ -677,10 +650,7 @@ const CoursePage = () => {
         </div>
       </div>
 
-      <ModalAuth
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-      />
+      <ModalAuth isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
     </div>
   )
 }

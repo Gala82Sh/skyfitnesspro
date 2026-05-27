@@ -13,7 +13,7 @@
 
 .modal-progress {
   width: 426px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30px;
   padding: 40px;
   display: flex;
@@ -68,7 +68,7 @@
   width: 100%;
   height: 52px;
   padding: 16px 18px;
-  border: 1px solid #D0CECE;
+  border: 1px solid #d0cece;
   border-radius: 8px;
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -76,14 +76,14 @@
 
   &:focus {
     outline: none;
-    border-color: #BCEC30;
+    border-color: #bcec30;
   }
 }
 
 .modal-progress-save {
   width: 100%;
   height: 52px;
-  background-color: #BCEC30;
+  background-color: #bcec30;
   border: none;
   border-radius: 46px;
   font-family: 'Roboto', sans-serif;
@@ -94,5 +94,112 @@
 
   &:hover {
     background-color: #a8d428;
+  }
+}
+
+
+@media (max-width: 768px) {
+  
+  .modal-progress-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+  
+  .modal-progress {
+    width: 343px !important;
+    max-width: 343px !important;
+    padding: 40px !important;
+    border-radius: 30px !important;
+    gap: 34px !important;
+    background: #ffffff !important;
+    display: flex !important;
+    flex-direction: column !important;
+    box-sizing: border-box !important;
+  }
+
+  
+  .modal-progress-title {
+    width: 263px !important;
+    height: 35px !important;
+    font-family: 'StratosSkyeng', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 32px !important;
+    line-height: 110% !important;
+    color: #000000 !important;
+    margin: 0 !important;
+  }
+
+  .modal-progress-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 34px !important;
+    width: 100% !important;
+  }
+
+  
+  .modal-progress-item {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+  }
+
+ 
+  .question {
+    width: 100% !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+    line-height: 110% !important;
+    color: #000000 !important;
+    margin: 0 !important;
+  }
+
+  
+  .progress-input {
+    width: 100% !important;
+    padding: 16px 18px !important;
+    border: 1px solid #c4c4c4 !important;
+    border-radius: 8px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    color: #000000 !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+    outline: none !important;
+  }
+
+  .progress-input:focus {
+    border-color: #bcec30 !important;
+  }
+
+ 
+  .modal-progress-save {
+    width: 100% !important;
+    padding: 16px 26px !important;
+    border-radius: 46px !important;
+    background-color: #bcec30 !important;
+    border: none !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    color: #000000 !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    margin-top: 0 !important;
+  }
+
+  .modal-progress-save:hover {
+    background-color: #a8d428 !important;
   }
 }

@@ -11,7 +11,11 @@ const ModalSuccess = ({ isOpen, onClose }: ModalSuccessProps) => {
   return (
     <div className="modal-success-overlay" onClick={onClose}>
       <div className="modal-success" onClick={(e) => e.stopPropagation()}>
-        <div className="success-text">Ваш прогресс<br />засчитан!</div>
+        <div className="success-text">
+          Ваш прогресс
+          <br />
+          засчитан!
+        </div>
         <img src="/image/check-in-circle.svg" alt="success" className="success-icon" />
       </div>
     </div>

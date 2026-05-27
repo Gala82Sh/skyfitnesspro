@@ -1,6 +1,5 @@
-/* ========== ДЕСКТОПНЫЕ СТИЛИ ========== */
 .home {
-  background-color: #FAFAFA;
+  background-color: #fafafa;
   min-height: 100vh;
 }
 
@@ -50,7 +49,7 @@
   top: 180px;
   left: 1011px;
   padding: 16px 20px;
-  background-color: #BCEC30;
+  background-color: #bcec30;
   border-radius: 5px;
 }
 
@@ -126,7 +125,7 @@
   align-items: center;
   gap: 6px;
   padding: 10px;
-  background-color: #F7F7F7;
+  background-color: #f7f7f7;
   border-radius: 50px;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
@@ -135,11 +134,11 @@
 }
 
 .home__scroll-top {
-   position: absolute;
+  position: absolute;
   top: 1426px;
   left: 656px;
   padding: 16px 26px;
-  background-color: #BCEC30;
+  background-color: #bcec30;
   border-radius: 46px;
   border: none;
   cursor: pointer;
@@ -153,7 +152,6 @@
   height: auto;
   display: block;
 }
-
 
 .home__user-menu > div {
   gap: 12px !important;
@@ -172,25 +170,19 @@
 .home__user-menu img:last-of-type {
   width: 8.03px !important;
   height: 8.03px !important;
-  
 }
 
-
-
 @media (max-width: 768px) {
-
- 
-  html, body {
+  html,
+  body {
     overflow-x: hidden;
   }
 
- 
   .home__container {
     padding-top: 40px !important;
-    background-color: #FAFAFA !important;
+    background-color: #fafafa !important;
   }
 
- 
   .home__logo {
     position: relative !important;
     top: 40px !important;
@@ -200,18 +192,15 @@
     margin-bottom: 20px !important;
   }
 
- 
   .home__user-menu {
     top: 40px !important;
     right: 16px !important;
     text-align: right !important;
     margin-bottom: 20px !important;
-    
-    
   }
 
   .home__user-menu button {
-    background-color: #BCEC30 !important;
+    background-color: #bcec30 !important;
     padding-top: 8px !important;
     padding-bottom: 8px !important;
     font-size: 14px !important;
@@ -223,19 +212,17 @@
     white-space: nowrap !important;
   }
 
-  
-   .home__subtitle,
+  .home__subtitle,
   .home__banner,
   .home__banner-tail {
     display: none !important;
   }
 
-
   .home__hero-title {
-     position: relative !important;
+    position: relative !important;
     width: 327px !important;
     top: 0 !important;
-    margin-top: 40px !important;  
+    margin-top: 40px !important;
     left: 16px !important;
     font-size: 32px !important;
     font-weight: 500 !important;
@@ -243,7 +230,6 @@
     margin-bottom: 0 !important;
   }
 
- 
   .home__courses-grid {
     display: flex !important;
     flex-direction: column !important;
@@ -252,8 +238,6 @@
     margin-top: 34px !important;
   }
 
-
- 
   .course-card {
     position: relative !important;
     width: 100% !important;
@@ -263,7 +247,6 @@
     left: auto !important;
   }
 
-  
   .course-card__title {
     width: 300px !important;
     height: 26px !important;
@@ -275,16 +258,15 @@
     margin-bottom: 20px !important;
   }
 
-  
   .home__scroll-top {
-     position: relative !important;
+    position: relative !important;
     top: auto !important;
     left: auto !important;
     width: 127px !important;
     height: 52px !important;
     margin: 24px auto !important;
     margin: 24px 16px 24px auto !important;
-    background-color: #BCEC30 !important;
+    background-color: #bcec30 !important;
     border-radius: 46px !important;
     border: none !important;
     cursor: pointer !important;
@@ -300,34 +282,27 @@
     height: auto !important;
   }
 
-
-
-  div[style*="top: 100px"][style*="left: 140px"] {
+  div[style*='top: 100px'][style*='left: 140px'] {
     display: none !important;
   }
 
+  .home__user-menu > div {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
 
- 
-.home__user-menu > div {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
+  .home__user-menu img:first-of-type {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .home__user-menu span {
+    display: none !important;
+  }
+
+  .home__user-menu img:last-of-type {
+    width: 8px !important;
+    height: 8px !important;
+  }
 }
-
-.home__user-menu img:first-of-type {
-  width: 36px !important;
-  height: 36px !important;
-}
-
-.home__user-menu span {
-  display: none !important;  
-}
-
-.home__user-menu img:last-of-type {
-  width: 8px !important;
-  height: 8px !important;
-}
- 
-}
-
-

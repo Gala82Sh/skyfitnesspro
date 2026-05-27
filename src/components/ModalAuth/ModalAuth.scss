@@ -13,7 +13,7 @@
 
 .modal-auth {
   width: 360px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 30px;
   padding: 40px;
   display: flex;
@@ -46,7 +46,7 @@
 
       &:focus {
         outline: none;
-        border-color: #BCEC30;
+        border-color: #bcec30;
       }
     }
   }
@@ -70,14 +70,117 @@
     border: none;
 
     &--primary {
-      background-color: #BCEC30;
+      background-color: #bcec30;
       color: #000;
     }
 
     &--secondary {
       background-color: transparent;
-      border: 1px solid #BCEC30;
+      border: 1px solid #bcec30;
       color: #000;
     }
+  }
+}
+
+@media (max-width: 768px) {
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+
+ 
+  .modal-auth {
+    width: 343px !important;
+    max-width: 343px !important;
+    padding: 40px !important;
+    border-radius: 30px !important;
+    gap: 48px !important;
+    background: #ffffff !important;
+    box-sizing: border-box !important;
+  }
+
+ 
+  .modal-auth__logo {
+    width: 220px !important;
+    height: 35px !important;
+    display: block !important;
+    margin: 0 auto !important;
+    align-self: center !important;
+  }
+
+ 
+  .modal-auth__form {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  
+  .modal-auth__form input {
+    width: 100% !important;
+    height: 52px !important;
+    padding: 16px 18px !important;
+    border: 1px solid #d0cece !important;
+    border-radius: 8px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 16px !important;
+    box-sizing: border-box !important;
+    color: #000 !important;
+    background-color: #fff !important;
+  }
+
+  .modal-auth__form input:focus {
+    outline: none !important;
+    border-color: #bcec30 !important;
+  }
+
+  
+  .password-wrapper {
+    position: relative !important;
+    width: 100% !important;
+  }
+
+  
+  .modal-auth__btn {
+    width: 100% !important;
+    height: 52px !important;
+    padding: 16px 26px !important;
+    border-radius: 46px !important;
+    font-family: 'Roboto', sans-serif !important;
+    font-size: 16px !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s !important;
+    box-sizing: border-box !important;
+  }
+
+  .modal-auth__btn--primary {
+    background-color: #bcec30 !important;
+    border: none !important;
+    color: #000 !important;
+  }
+
+  .modal-auth__btn--secondary {
+    background-color: transparent !important;
+    border: 1px solid #000000 !important;
+    color: #000 !important;
+  }
+
+  
+  .modal-auth__error {
+    color: red !important;
+    font-size: 14px !important;
+    margin-top: -20px !important;
+    margin-bottom: 10px !important;
   }
 }
