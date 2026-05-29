@@ -1,70 +1,54 @@
-# React + TypeScript + Vite
+markdown
+# SkyFitnessPro
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Фитнес-приложение для онлайн-тренировок. Пользователи могут просматривать курсы, добавлять их в свой профиль, проходить тренировки с видео и отслеживать свой прогресс.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 📋 Функционал
 
-## React Compiler
+- **Авторизация и регистрация** — вход по email и паролю с валидацией
+- **Главная страница** — список всех доступных курсов
+- **Страница курса** — подробное описание, направления, кнопка добавления в профиль
+- **Профиль** — список добавленных курсов, удаление курса, сброс прогресса, кнопка начала тренировки
+- **Тренировка** — видеоурок, список упражнений, сохранение прогресса, отметка пройденных упражнений
+- **Адаптивный дизайн** — корректное отображение на мобильных устройствах и планшетах
+- **Уведомления** — всплывающие тосты вместо стандартных alert (успех, ошибка, информация)
+- **Прогресс** — отслеживание процента выполнения курса и упражнений
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠 Технологии
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Технология | Назначение |
+|------------|------------|
+| React 19 | Библиотека для UI |
+| TypeScript | Типизация |
+| Vite | Сборка проекта |
+| React Router | Маршрутизация |
+| SCSS-модули | Стилизация |
+| ESLint + Prettier | Качество кода |
+| Vitest + Testing Library | Юнит-тестирование |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-     
-      tseslint.configs.recommendedTypeChecked,
-     
-      tseslint.configs.strictTypeChecked,
-      
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-     
-    },
-  },
-])
-```
+##  Установка и запуск
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Требования
+- Node.js 18+
+- npm 9+
 
-```js
+### Инструкция
 
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+# 1. Клонировать репозиторий
+git clone https://github.com/Gala82Sh/skyfitnesspro.git
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
+# 2. Перейти в папку проекта
+cd skyfitnesspro
 
-      reactX.configs['recommended-typescript'],
-      
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      
-    },
-  },
-])
-```
+# 3. Установить зависимости
+npm install
+
+# 4. Запустить в режиме разработки
+npm run dev
