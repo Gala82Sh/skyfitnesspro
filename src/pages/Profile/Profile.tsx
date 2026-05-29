@@ -7,11 +7,13 @@ import { getCourseProgress } from '@/api/progress'
 import ModalWorkoutSelection from '@/components/ModalWorkoutSelection/ModalWorkoutSelection'
 import { Link } from 'react-router-dom'
 import { Course, Workout } from '@/types'
+import { useToast } from '@/contexts/ToastContext'
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
 const Profile = () => {
   const navigate = useNavigate()
+  const { showToast } = useToast()
   const [user, setUser] = useState({ name: '', email: '' })
   const [userCourses, setUserCourses] = useState<Course[]>([])
   const [progressMap, setProgressMap] = useState<{ [key: string]: any }>({})
@@ -19,6 +21,7 @@ const Profile = () => {
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null)
   const [courseWorkouts, setCourseWorkouts] = useState<Workout[]>([])
   const [selectedWorkoutId, setSelectedWorkoutId] = useState<string | null>(null)
+  const [completedWorkoutIds, setCompletedWorkoutIds] = useState<string[]>([])
 
   useEffect(() => {
     getUserMe()
@@ -71,7 +74,7 @@ const Profile = () => {
   const handleDeleteCourse = async (courseId: string) => {
     const token = localStorage.getItem('token')
     if (!token) {
-      alert('Вы не авторизованы')
+      showToast('Вы не авторизованы', 'error')
       return
     }
 
@@ -89,10 +92,10 @@ const Profile = () => {
       }
 
       setUserCourses((prev) => prev.filter((c) => c._id !== courseId))
-      alert('Курс удалён')
+      showToast('Курс удалён', 'success')
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Ошибка'
-      alert(message)
+      showToast(message, 'error')
     }
   }
 
@@ -118,7 +121,7 @@ const Profile = () => {
           const error = await res.json()
           throw new Error(error.message || 'Ошибка сброса прогресса')
         }
-        alert('Прогресс курса сброшен!')
+        showToast('Прогресс курса сброшен!', 'success')
         
         const updatedUser = await getUserMe()
         const userData = updatedUser.user || updatedUser
@@ -145,11 +148,18 @@ const Profile = () => {
         }
       } catch (err: unknown) {
         const message = err instanceof Error ? err.message : 'Ошибка'
-        alert(message)
+        showToast(message, 'error')
       }
     } else {
       setSelectedCourseId(courseId)
-      fetchCourseWorkouts(courseId)
+      await fetchCourseWorkouts(courseId)
+      
+      const courseProgress = progressMap[courseId]
+      const completedIds = courseProgress?.workoutsProgress
+        ?.filter((wp: any) => wp.workoutCompleted)
+        ?.map((wp: any) => wp.workoutId) || []
+      
+      setCompletedWorkoutIds(completedIds)
       setIsWorkoutModalOpen(true)
     }
   }
@@ -164,6 +174,7 @@ const Profile = () => {
       setIsWorkoutModalOpen(false)
       setSelectedWorkoutId(null)
       setSelectedCourseId(null)
+      setCompletedWorkoutIds([])
     }
   }
 
@@ -264,11 +275,13 @@ const Profile = () => {
           setIsWorkoutModalOpen(false)
           setSelectedWorkoutId(null)
           setSelectedCourseId(null)
+          setCompletedWorkoutIds([])
         }}
         workouts={courseWorkouts}
         onSelectWorkout={handleSelectWorkout}
         onStart={handleStartWorkout}
         selectedWorkoutId={selectedWorkoutId}
+        completedWorkoutIds={completedWorkoutIds}
       />
     </div>
   )

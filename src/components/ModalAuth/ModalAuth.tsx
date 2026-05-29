@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useToast } from '@/contexts/ToastContext'
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
@@ -15,6 +16,7 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
   const [error, setError] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const { showToast } = useToast()
 
   if (!isOpen) return null
 
@@ -48,7 +50,7 @@ const ModalAuth = ({ isOpen, onClose }: ModalAuthProps) => {
         })
         const data = await res.json()
         if (res.ok) {
-          alert('Регистрация прошла успешно! Теперь войдите')
+          showToast('Регистрация прошла успешно! Теперь войдите', 'success')
           setIsLogin(true)
           setEmail('')
           setPassword('')

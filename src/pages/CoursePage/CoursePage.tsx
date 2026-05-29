@@ -5,6 +5,7 @@ import UserMenu from '@/components/UserMenu/UserMenu'
 import { useAuth } from '@/hooks/useAuth'
 import { addCourseToUser } from '@/api/userCourses'
 import ModalAuth from '@/components/ModalAuth/ModalAuth'
+import { useToast } from '@/contexts/ToastContext'
 import './CoursePage.css'
 import { Link } from 'react-router-dom'
 import './CoursePage.module.scss'
@@ -15,6 +16,7 @@ const CoursePage = () => {
   const [loading, setLoading] = useState(true)
   const { isAuth } = useAuth()
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
+  const { showToast } = useToast()
 
   useEffect(() => {
     if (!id) return
@@ -31,10 +33,10 @@ const CoursePage = () => {
     }
     try {
       await addCourseToUser(course!._id)
-      alert('Курс добавлен!')
+      showToast('Курс добавлен!', 'success')
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Ошибка'
-      alert(message)
+      showToast(message, 'error')
     }
   }
 

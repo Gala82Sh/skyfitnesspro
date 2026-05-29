@@ -8,6 +8,7 @@ import ModalProgress from '@/components/ModalProgress/ModalProgress'
 import ModalSuccess from '@/components/ModalSuccess/ModalSuccess'
 import { Link } from 'react-router-dom'
 import { Course, Workout } from '@/types'
+import { useToast } from '@/contexts/ToastContext'
 
 const WorkoutPage = () => {
   const navigate = useNavigate()
@@ -19,6 +20,7 @@ const WorkoutPage = () => {
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false)
   const [progressMap, setProgressMap] = useState<{ [key: number]: number }>({})
   const [hasProgress, setHasProgress] = useState(false)
+  const { showToast } = useToast()
 
   const fetchProgress = useCallback(async () => {
     try {
@@ -131,7 +133,7 @@ const WorkoutPage = () => {
       setIsSuccessModalOpen(true)
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Ошибка'
-      alert(message)
+      showToast(message, 'error')
     }
   }
 

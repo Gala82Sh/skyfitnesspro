@@ -5,6 +5,7 @@ import { useAuth } from '@/hooks/useAuth'
 import { addCourseToUser } from '@/api/userCourses'
 import { getAllCourses } from '@/api/courses'
 import UserMenu from '@/components/UserMenu/UserMenu'
+import { useToast } from '@/contexts/ToastContext'
 import './Home.css'
 import { Course } from '@/types'
 
@@ -12,6 +13,7 @@ const Home = () => {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false)
   const [courses, setCourses] = useState<Course[]>([])
   const { isAuth } = useAuth()
+  const { showToast } = useToast()
 
   useEffect(() => {
     getAllCourses()
@@ -29,10 +31,10 @@ const Home = () => {
     }
     try {
       await addCourseToUser(courseId)
-      alert('Курс добавлен!')
+      showToast('Курс добавлен!', 'success')
     } catch (err: unknown) {
       const message = err instanceof Error ? err.message : 'Ошибка'
-      alert(message)
+      showToast(message, 'error')
     }
   }
 

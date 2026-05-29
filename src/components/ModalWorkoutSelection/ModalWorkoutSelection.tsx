@@ -7,6 +7,7 @@ interface ModalWorkoutSelectionProps {
   onSelectWorkout: (workoutId: string) => void
   onStart: () => void
   selectedWorkoutId: string | null
+  completedWorkoutIds?: string[]
 }
 
 const ModalWorkoutSelection = ({
@@ -16,6 +17,7 @@ const ModalWorkoutSelection = ({
   onSelectWorkout,
   onStart,
   selectedWorkoutId,
+  completedWorkoutIds = [],
 }: ModalWorkoutSelectionProps) => {
   if (!isOpen) return null
 
@@ -34,6 +36,8 @@ const ModalWorkoutSelection = ({
         <div className="workouts-list">
           {workouts.map((workout) => {
             const { firstLine, secondLine } = formatWorkoutName(workout.name)
+            const isCompleted = completedWorkoutIds.includes(workout._id)
+
             return (
               <div
                 key={workout._id}
@@ -41,7 +45,9 @@ const ModalWorkoutSelection = ({
                 onClick={() => onSelectWorkout(workout._id)}
               >
                 <div className="workout-radio">
-                  {selectedWorkoutId === workout._id ? (
+                  {isCompleted ? (
+                    <img src="/image/check-in-circle.svg" alt="completed" className="radio-icon" />
+                  ) : selectedWorkoutId === workout._id ? (
                     <img src="/image/radio.svg" alt="selected" className="radio-icon" />
                   ) : (
                     <div className="radio-empty"></div>
