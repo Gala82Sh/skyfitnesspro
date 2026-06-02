@@ -248,16 +248,6 @@
     overflow: visible !important;
   }
 
-  .course-vector {
-    position: absolute !important;
-    width: 431.03px !important;
-    height: 251.47px !important;
-    top: -100px !important;
-    left: -54px !important;
-    transform: rotate(12.38deg) !important;
-    z-index: 1 !important;
-  }
-
   .course-man,
   img[src='/image/man_in_green.svg'] {
     position: absolute !important;
@@ -291,3 +281,4 @@
     height: 8px !important;
   }
 }
+

@@ -11,12 +11,30 @@ import { useToast } from '@/contexts/ToastContext'
 
 const API_BASE_URL = 'https://wedev-api.sky.pro/api/fitness'
 
+interface WorkoutProgress {
+  workoutId: string
+  workoutCompleted: boolean
+  completedAt?: string
+}
+
+interface CourseProgress {
+  courseCompleted: boolean
+  workoutsProgress: WorkoutProgress[]
+  completedLessons?: number
+  totalLessons?: number
+}
+
+interface UserData {
+  email: string
+  selectedCourses?: string[]
+}
+
 const Profile = () => {
   const navigate = useNavigate()
   const { showToast } = useToast()
   const [user, setUser] = useState({ name: '', email: '' })
   const [userCourses, setUserCourses] = useState<Course[]>([])
-  const [progressMap, setProgressMap] = useState<{ [key: string]: any }>({})
+  const [progressMap, setProgressMap] = useState<Record<string, CourseProgress>>({})
   const [isWorkoutModalOpen, setIsWorkoutModalOpen] = useState(false)
   const [selectedCourseId, setSelectedCourseId] = useState<string | null>(null)
   const [courseWorkouts, setCourseWorkouts] = useState<Workout[]>([])
@@ -26,7 +44,7 @@ const Profile = () => {
   useEffect(() => {
     getUserMe()
       .then((data) => {
-        const userData = data.user || data
+        const userData = data.user || data as UserData
         if (userData?.email) {
           const nameFromEmail = userData.email.split('@')[0]
           setUser({ name: nameFromEmail, email: userData.email })
@@ -43,10 +61,10 @@ const Profile = () => {
               const progressData = await Promise.all(
                 courses.map((course) => getCourseProgress(course._id).catch(() => null))
               )
-              const map: { [key: string]: any } = {}
+              const map: Record<string, CourseProgress> = {}
               courses.forEach((course, idx) => {
                 if (progressData[idx]) {
-                  map[course._id] = progressData[idx]
+                  map[course._id] = progressData[idx] as CourseProgress
                 }
               })
               setProgressMap(map)
@@ -124,7 +142,7 @@ const Profile = () => {
         showToast('Прогресс курса сброшен!', 'success')
         
         const updatedUser = await getUserMe()
-        const userData = updatedUser.user || updatedUser
+        const userData = updatedUser.user || updatedUser as UserData
         if (userData.selectedCourses?.length) {
           const coursesData = await Promise.all(
             userData.selectedCourses.map((id: string) =>
@@ -138,10 +156,10 @@ const Profile = () => {
               getCourseProgress(course._id).catch(() => null)
             )
           )
-          const map: { [key: string]: any } = {}
+          const map: Record<string, CourseProgress> = {}
           coursesData.forEach((course, idx) => {
             if (progressData[idx]) {
-              map[course._id] = progressData[idx]
+              map[course._id] = progressData[idx] as CourseProgress
             }
           })
           setProgressMap(map)
@@ -156,8 +174,8 @@ const Profile = () => {
       
       const courseProgress = progressMap[courseId]
       const completedIds = courseProgress?.workoutsProgress
-        ?.filter((wp: any) => wp.workoutCompleted)
-        ?.map((wp: any) => wp.workoutId) || []
+        ?.filter((wp: WorkoutProgress) => wp.workoutCompleted)
+        ?.map((wp: WorkoutProgress) => wp.workoutId) || []
       
       setCompletedWorkoutIds(completedIds)
       setIsWorkoutModalOpen(true)
@@ -208,8 +226,7 @@ const Profile = () => {
             {userCourses.map((course) => {
               const progress = progressMap[course._id]
               const isCompleted = progress?.courseCompleted || false
-              const completedCount =
-                progress?.workoutsProgress?.filter((w: any) => w.workoutCompleted).length || 0
+              const completedCount = progress?.workoutsProgress?.filter((w: WorkoutProgress) => w.workoutCompleted).length || 0
               const totalCount = course.workouts?.length || 1
               const percent = Math.round((completedCount / totalCount) * 100)
 

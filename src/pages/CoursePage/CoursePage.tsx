@@ -45,16 +45,16 @@ const CoursePage = () => {
 
   return (
     <div style={{ backgroundColor: '#FAFAFA', minHeight: '1703px' }}>
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: '1440px',
-          margin: '0 auto',
-          height: '100%',
-        }}
-      >
-        {}
+      <div className="relative-wrapper"
+  style={{
+    position: 'relative',
+    width: '100%',
+    maxWidth: '1440px',
+    margin: '0 auto',
+    height: '100%',
+  }}
+>
+        
         <Link to="/" className="logo-link">
           <img
             className="course-logo"
@@ -70,7 +70,6 @@ const CoursePage = () => {
           />
         </Link>
 
-        {}
         <div
           className="course-subtitle"
           style={{
@@ -89,7 +88,7 @@ const CoursePage = () => {
           Онлайн-тренировки для занятий дома
         </div>
 
-        {}
+       
         <div
           className="course-usermenu"
           style={{ position: 'absolute', top: '50px', right: '140px' }}
@@ -97,7 +96,7 @@ const CoursePage = () => {
           <UserMenu onOpenModal={() => setIsAuthModalOpen(true)} />
         </div>
 
-        {}
+        
         <picture>
           <source
             media="(min-width: 769px)"
@@ -139,7 +138,7 @@ const CoursePage = () => {
           />
         </picture>
 
-        {}
+        
         <div
           className="course-fitting-title"
           style={{
@@ -158,7 +157,7 @@ const CoursePage = () => {
           Подойдет для вас, если:
         </div>
 
-        {}
+       
         <div
           className="course-fitting-item"
           style={{
@@ -218,7 +217,7 @@ const CoursePage = () => {
           </div>
         </div>
 
-        {}
+       
         <div
           className="course-fitting-item"
           style={{
